@@ -8,7 +8,7 @@ namespace Projeto.Restaurante.Dominio.Entidades
         public string Nome { get; private set; }
         public decimal Preco { get; private set; }
         public string Descricao { get; private set; }
-        public Categoria Categoria { get; private set; }
+        public virtual List<Categoria> Categorias { get; private set; }
         #endregion
 
         #region Construtores

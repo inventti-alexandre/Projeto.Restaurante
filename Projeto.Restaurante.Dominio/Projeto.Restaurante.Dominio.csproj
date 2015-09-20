@@ -37,10 +37,11 @@
     <Compile Include="Entidades\Opcao.cs" />
     <Compile Include="Entidades\Pedido.cs" />
     <Compile Include="Entidades\Prato.cs" />
+    <Compile Include="Exceptions\MyException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Interfaces\" />
+    <Folder Include="Interfaces\Entidades\" />
     <Folder Include="Servicos\" />
   </ItemGroup>
   <ItemGroup>

@@ -30,7 +30,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -39,11 +48,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConfiguracaoDeEntidades\ConfiguracaoCategoria.cs" />
+    <Compile Include="ConfiguracaoDeEntidades\ConfiguracaoItem.cs" />
+    <Compile Include="ConfiguracaoDeEntidades\ConfiguracaoMesa.cs" />
+    <Compile Include="ConfiguracaoDeEntidades\ConfiguracaoOpcao.cs" />
+    <Compile Include="ConfiguracaoDeEntidades\ConfiguracaoPedido.cs" />
+    <Compile Include="ConfiguracaoDeEntidades\ConfiguracaoPrato.cs" />
+    <Compile Include="Contexto\ProjetoRestauranteContext.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="ConfiguracaoDeEntidades\" />
-    <Folder Include="Contexto\" />
     <Folder Include="Repositorios\" />
   </ItemGroup>
   <ItemGroup>
@@ -51,6 +66,10 @@
       <Project>{a88038b0-3a55-4b84-90b2-2163ba20ce96}</Project>
       <Name>Projeto.Restaurante.Dominio</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

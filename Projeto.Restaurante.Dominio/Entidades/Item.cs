@@ -7,7 +7,7 @@ namespace Projeto.Restaurante.Dominio.Entidades
         #region Propriedades
         public Pedido Pedido { get; private set; }
         public Prato Prato { get; private set; }
-        public List<Opcao> Opcoes { get; private set; }
+        public virtual List<Opcao> Opcoes { get; private set; }
         #endregion
 
         #region Construtores

@@ -8,7 +8,7 @@ namespace Projeto.Restaurante.Dominio.Entidades
     {
         #region Propriedades
         public Mesa Mesa { get; private set; }
-        public List<Item> Itens { get; private set; }
+        public virtual List<Item> Itens { get; private set; }
         #endregion
 
         #region Construtores
