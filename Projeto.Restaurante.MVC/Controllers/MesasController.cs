@@ -11,11 +11,6 @@ namespace Projeto.Restaurante.MVC.Controllers
     {
         private readonly IAplicacaoMesa _aplicacaoMesa;
 
-        public MesasController()
-        {
-            
-        }
-
         public MesasController(IAplicacaoMesa aplicacaoMesa)
         {
             _aplicacaoMesa = aplicacaoMesa;

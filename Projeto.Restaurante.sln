@@ -25,6 +25,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Projeto.Restaurante.Infraes
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Projeto.Restaurante.Aplicacao", "Projeto.Restaurante.Aplicacao\Projeto.Restaurante.Aplicacao.csproj", "{C01BCE4F-82CE-48AC-92FA-C3550B553DDE}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5 - Testes", "5 - Testes", "{37FF8191-9B6C-4911-81FF-A47F7DCEB037}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
