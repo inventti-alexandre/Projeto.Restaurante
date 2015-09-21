@@ -9,7 +9,7 @@ namespace Projeto.Restaurante.MVC.ViewModels
         [DisplayName("Nome")]
         [DataType(DataType.Text)]
         [Required(ErrorMessage = "Obrigatório!", AllowEmptyStrings = false)]
-        [StringLength(100, MinimumLength = 10, ErrorMessage = "Mínimo de {2} e Máximo de {1} caracteres!")]
+        [StringLength(100, MinimumLength = 5, ErrorMessage = "Mínimo de {2} e Máximo de {1} caracteres!")]
         public string Nome { get; set; }
         #endregion
 
