@@ -1,0 +1,30 @@
+﻿@using Projeto.Restaurante.MVC.Models
+@model Projeto.Restaurante.MVC.Models.Alerta
+
+@switch (@Model.TipoDeAlerta)
+{
+    case TipoDeAlerta.Sucesso:
+        <div class="alert alert-success">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            @Html.Raw(Model.Mensagem)
+        </div>
+        break;
+    case TipoDeAlerta.Informação:
+    <div class="alert alert-info">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        @Html.Raw(Model.Mensagem)
+    </div>
+        break;
+    case TipoDeAlerta.Aviso:
+    <div class="alert alert-warning">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        @Html.Raw(Model.Mensagem)
+    </div>
+        break;
+    case TipoDeAlerta.Perigo:
+    <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        @Html.Raw(Model.Mensagem)
+    </div>
+        break;
+}

@@ -139,6 +139,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Alerta.cs" />
+    <Compile Include="Models\TipoDeAlerta.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="ViewModels\ViewModelCategoria.cs" />
@@ -203,7 +205,8 @@
     <Content Include="Views\Mesas\Details.cshtml" />
     <Content Include="Views\Mesas\Create.cshtml" />
     <Content Include="Views\Mesas\Edit.cshtml" />
-    <Content Include="Views\Mesas\Delete.cshtml" />
+    <Content Include="Views\Util\Alert.cshtml" />
+    <Content Include="Views\Util\AlertInline.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

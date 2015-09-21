@@ -1,39 +1,72 @@
-﻿@model IEnumerable<Projeto.Restaurante.MVC.ViewModels.ViewModelMesa>
+﻿@using Projeto.Restaurante.MVC.Models
+@model IEnumerable<Projeto.Restaurante.MVC.ViewModels.ViewModelMesa>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Listar";
 }
 
-<h2>Index</h2>
+<div class="form-group">
+    <div class="col-md-2">
+        @Html.ActionLink("Novo", "Create", null, null, new { @class = "btn btn-info btn-block" })
+    </div>
+</div>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Ativo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Nome)
-        </th>
-        <th></th>
-    </tr>
+@if (Model.Any())
+{
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            Listar
+        </div>
+        <div class="panel-body">
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Ativo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nome)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
+            <div class="table-responsive">
+
+                <table class="table table-bordered table-striped table-hover table-condensed">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Nome)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Ativo)
+                            </th>
+                            <th>
+                                Opções
+                            </th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Nome)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Ativo)
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Alterar", "Edit", new { id = item.Id }, new { @class = "btn btn-info" })) |
+                                    @Html.ActionLink("Consultar", "Details", new { id = item.Id }, new { @class = "btn btn-info" })) |
+                                    @Html.ActionLink("Excluir", "Delete", new { id = item.Id }, new { @class = "btn btn-danger" }))
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+
+                    <tfoot>
+                        <tr>
+                            <td colspan="3">Total: @Model.Count()</td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+
+        </div>
+    </div>
 }
-
-</table>
+else
+{
+    Html.RenderPartial("~/Views/Util/AlertInline.cshtml", new Alerta("Não há itens para exibir!", TipoDeAlerta.Aviso));
+}

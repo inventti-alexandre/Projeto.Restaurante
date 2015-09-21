@@ -89,20 +89,10 @@ namespace Projeto.Restaurante.MVC.Controllers
         public ActionResult Delete(int id)
         {
             var mesa = _aplicacaoMesa.GetById(id);
-            var viewModelMesa = Mapper.Map<Mesa, ViewModelMesa>(mesa);
-
-            return View(viewModelMesa);
-        }
-
-        // POST: Mesas/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            var mesa = _aplicacaoMesa.GetById(id);
             _aplicacaoMesa.Remove(mesa);
 
             return RedirectToAction("Index");
         }
+
     }
 }

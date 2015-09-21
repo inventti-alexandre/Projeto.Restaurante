@@ -12,7 +12,7 @@ namespace Projeto.Restaurante.Infraestrutura.Dados.Contexto
         public ProjetoRestauranteContext()
             : base("ProjetoRestaurante")
         {
-            Database.SetInitializer<ProjetoRestauranteContext>(new DropCreateDatabaseAlways<ProjetoRestauranteContext>());
+            //Database.SetInitializer<ProjetoRestauranteContext>(new DropCreateDatabaseAlways<ProjetoRestauranteContext>());
         }
 
         public DbSet<Categoria> Categorias { get; set; }
