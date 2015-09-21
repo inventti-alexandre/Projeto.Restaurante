@@ -1,3 +1,10 @@
+using Projeto.Restaurante.Aplicacao;
+using Projeto.Restaurante.Aplicacao.Interfaces;
+using Projeto.Restaurante.Dominio.Interfaces.Repositorios;
+using Projeto.Restaurante.Dominio.Interfaces.Servicos;
+using Projeto.Restaurante.Dominio.Servicos;
+using Projeto.Restaurante.Infraestrutura.Dados.Repositorios;
+
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(Projeto.Restaurante.MVC.App_Start.NinjectWebCommon), "Start")]
 [assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(Projeto.Restaurante.MVC.App_Start.NinjectWebCommon), "Stop")]
 
@@ -61,6 +68,29 @@ namespace Projeto.Restaurante.MVC.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
+            kernel.Bind(typeof(IAplicacaoBase<>)).To(typeof(AplicacaoBase<>));
+            kernel.Bind<IAplicacaoCategoria>().To<AplicacaoCategoria>();
+            kernel.Bind<IAplicacaoItem>().To<AplicacaoItem>();
+            kernel.Bind<IAplicacaoMesa>().To<AplicacaoMesa>();
+            kernel.Bind<IAplicacaoOpcao>().To<AplicacaoOpcao>();
+            kernel.Bind<IAplicacaoPedido>().To<AplicacaoPedido>();
+            kernel.Bind<IAplicacaoPrato>().To<AplicacaoPrato>();
+
+            kernel.Bind(typeof(IServicoBase<>)).To(typeof(ServicoBase<>));
+            kernel.Bind<IServicoCategoria>().To<ServicoCategoria>();
+            kernel.Bind<IServicoItem>().To<ServicoItem>();
+            kernel.Bind<IServicoMesa>().To<ServicoMesa>();
+            kernel.Bind<IServicoOpcao>().To<ServicoOpcao>();
+            kernel.Bind<IServicoPedido>().To<ServicoPedido>();
+            kernel.Bind<IServicoPrato>().To<ServicoPrato>();
+
+            kernel.Bind(typeof(IRepositorioBase<>)).To(typeof(RepositorioBase<>));
+            kernel.Bind<IRepositorioCategoria>().To<RepositorioCategoria>();
+            kernel.Bind<IRepositorioItem>().To<RepositorioItem>();
+            kernel.Bind<IRepositorioMesa>().To<RepositorioMesa>();
+            kernel.Bind<IRepositorioOpcao>().To<RepositorioOpcao>();
+            kernel.Bind<IRepositorioPedido>().To<RepositorioPedido>();
+            kernel.Bind<IRepositorioPrato>().To<RepositorioPrato>();
         }        
     }
 }
