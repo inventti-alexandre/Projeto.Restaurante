@@ -12,7 +12,7 @@ namespace Projeto.Restaurante.Infraestrutura.Dados.Contexto
         public ProjetoRestauranteContext()
             : base("ProjetoRestaurante")
         {
-            //Database.SetInitializer<ProjetoRestauranteContext>(new DropCreateDatabaseAlways<ProjetoRestauranteContext>());
+            Database.SetInitializer<ProjetoRestauranteContext>(new DropCreateDatabaseAlways<ProjetoRestauranteContext>());
         }
 
         public DbSet<Categoria> Categorias { get; set; }
@@ -28,15 +28,14 @@ namespace Projeto.Restaurante.Infraestrutura.Dados.Contexto
             modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
             modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();
 
-            //modelBuilder.Properties()
-            //    .Where(p => p.Name == p.ReflectedType.Name + "Id")
-            //    .Configure(p => p.IsKey());
-
             modelBuilder.Properties<string>()
                 .Configure(p => p.HasColumnType("varchar"));
 
             modelBuilder.Properties<string>()
                 .Configure(p => p.HasMaxLength(100));
+
+            modelBuilder.Properties<DateTime>()
+                .Configure(p => p.HasColumnType("datetime2"));
 
             modelBuilder.Configurations.Add(new ConfiguracaoCategoria());
             modelBuilder.Configurations.Add(new ConfiguracaoItem());
@@ -86,19 +85,6 @@ namespace Projeto.Restaurante.Infraestrutura.Dados.Contexto
                 if (entry.State == EntityState.Modified)
                 {
                     entry.Property("DataUltimaAlteracao").CurrentValue = DateTime.Now;
-                }
-            }
-
-            foreach (var entry in ChangeTracker.Entries().Where(entry => entry.Entity.GetType().GetProperty("Ativo") != null))
-            {
-                if (entry.State == EntityState.Added)
-                {
-                    entry.Property("Ativo").CurrentValue = true;
-                }
-
-                if (entry.State == EntityState.Modified)
-                {
-                    entry.Property("Ativo").IsModified = false;
                 }
             }
 

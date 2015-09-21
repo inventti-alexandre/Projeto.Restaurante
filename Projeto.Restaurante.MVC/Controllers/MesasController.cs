@@ -47,15 +47,13 @@ namespace Projeto.Restaurante.MVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(ViewModelMesa viewModelMesa)
         {
-            if (ModelState.IsValid)
-            {
-                var mesa = Mapper.Map<ViewModelMesa, Mesa>(viewModelMesa);
-                _aplicacaoMesa.Add(mesa);
+            if (!ModelState.IsValid)
+                return View(viewModelMesa);
 
-                RedirectToAction("Index");
-            }
-                
-            return View(viewModelMesa);
+            var mesa = Mapper.Map<ViewModelMesa, Mesa>(viewModelMesa);
+            _aplicacaoMesa.Add(mesa);
+
+            return RedirectToAction("Index");
         }
 
         // GET: Mesas/Edit/5
@@ -73,15 +71,14 @@ namespace Projeto.Restaurante.MVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(ViewModelMesa viewModelMesa)
         {
-            if (ModelState.IsValid)
-            {
-                var mesa = Mapper.Map<ViewModelMesa, Mesa>(viewModelMesa);
-                _aplicacaoMesa.Update(mesa);
+            if (!ModelState.IsValid)
+                return View(viewModelMesa);
 
-                RedirectToAction("Index");
-            }
+            var mesa = Mapper.Map<ViewModelMesa, Mesa>(viewModelMesa);
+            _aplicacaoMesa.Update(mesa);
 
-            return View(viewModelMesa);
+            return RedirectToAction("Index");
+
         }
 
         // GET: Mesas/Delete/5
