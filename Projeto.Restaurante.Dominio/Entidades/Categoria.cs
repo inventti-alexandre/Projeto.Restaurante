@@ -8,11 +8,14 @@ namespace Projeto.Restaurante.Dominio.Entidades
     {
         #region Propriedades
         public string Nome { get; private set; }
-        public virtual List<Prato> Pratos { get; private set; }
+        public virtual IList<Prato> Pratos { get; private set; }
         #endregion
 
         #region Construtores
-        
+        public Categoria()
+        {
+            
+        }
         #endregion
 
         #region Preencher
@@ -27,11 +30,11 @@ namespace Projeto.Restaurante.Dominio.Entidades
         #endregion
 
         #region Listar
-        public static List<Categoria> Listar()
+        public static IList<Categoria> Listar()
         {
             return new List<Categoria>();
         }
-        public static async Task<List<Categoria>> ListarComPratosPreenchidosAsync()
+        public static async Task<IList<Categoria>> ListarComPratosPreenchidosAsync()
         {
             var categorias = Listar();
             var tasks = categorias.Select(async categoria => await categoria.PreencherPratosAsync());

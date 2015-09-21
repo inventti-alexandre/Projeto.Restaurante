@@ -9,10 +9,21 @@ namespace Projeto.Restaurante.Infraestrutura.Dados.ConfiguracaoDeEntidades
         {
             ToTable("Opcoes");
 
+            #region Base
             HasKey(x => x.Id);
 
             Property(x => x.GlobalId)
-                 .IsRequired();
+                .IsRequired();
+
+            Property(x => x.DataCadastro)
+                .IsRequired();
+
+            Property(x => x.DataUltimaAlteracao)
+                .IsOptional();
+
+            Property(x => x.Ativo)
+                .IsRequired();
+            #endregion
 
             Property(x => x.Nome)
                 .IsRequired()

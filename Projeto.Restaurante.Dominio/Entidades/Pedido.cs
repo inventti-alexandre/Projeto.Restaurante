@@ -7,12 +7,16 @@ namespace Projeto.Restaurante.Dominio.Entidades
     public class Pedido : Base
     {
         #region Propriedades
-        public Mesa Mesa { get; private set; }
-        public virtual List<Item> Itens { get; private set; }
+        public int MesaId { get; private set; }
+        public virtual Mesa Mesa { get; private set; }
+        public virtual IList<Item> Itens { get; private set; }
         #endregion
 
         #region Construtores
-
+        public Pedido()
+        {
+            
+        }
         #endregion
 
         #region Preencher
@@ -28,11 +32,11 @@ namespace Projeto.Restaurante.Dominio.Entidades
         #endregion
 
         #region Listar
-        public static List<Pedido> Listar()
+        public static IEnumerable<Pedido> Listar()
         {
             return new List<Pedido>();
         }
-        public static async Task<List<Pedido>> ListarComItensPreenchidosAsync()
+        public static async Task<IEnumerable<Pedido>> ListarComItensPreenchidosAsync()
         {
             var pedidos = Listar();
             var tasks = pedidos.Select(async pedido => await pedido.PreencherItensAsync());

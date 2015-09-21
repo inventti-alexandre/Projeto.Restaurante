@@ -1,0 +1,41 @@
+﻿.divMenu {
+    width: 135px !important;
+    height: 90px !important;
+    border: solid 1px #000000;
+    margin: 5px;
+    -ms-border-radius: 5px;
+    border-radius: 5px;
+    background-color: #FFFFFF;
+    border: 1px outset #FFFFFF;
+    float: left;
+    padding: 0;
+}
+
+    .divMenu:hover {
+        background-color: #99CCFF;
+    }
+
+.linkMenu {
+    width: 135px;
+    height: 90px;
+    position: absolute;
+}
+
+.imgLogoMenu {
+    display: block;
+    margin: 0 auto;
+}
+
+.labelMenu {
+    display: block;
+    text-align: center;
+}
+
+.spanMenu {
+    font-size: 17px;
+    font-weight: normal !important;
+}
+
+    .spanMenu:hover, .labelMenu:hover {
+        cursor: pointer;
+    }

@@ -9,10 +9,21 @@ namespace Projeto.Restaurante.Infraestrutura.Dados.ConfiguracaoDeEntidades
         {
             ToTable("Pratos");
 
+            #region Base
             HasKey(x => x.Id);
 
             Property(x => x.GlobalId)
                 .IsRequired();
+
+            Property(x => x.DataCadastro)
+                .IsRequired();
+
+            Property(x => x.DataUltimaAlteracao)
+                .IsOptional();
+
+            Property(x => x.Ativo)
+                .IsRequired();
+            #endregion
 
             Property(x => x.Nome)
                 .IsRequired()
@@ -25,6 +36,9 @@ namespace Projeto.Restaurante.Infraestrutura.Dados.ConfiguracaoDeEntidades
             Property(x => x.Descricao)
                 .IsRequired()
                 .HasMaxLength(256);
+
+            Property(x => x.Disponivel)
+                .IsRequired();
 
             HasMany(x => x.Categorias)
                 .WithMany(x => x.Pratos)

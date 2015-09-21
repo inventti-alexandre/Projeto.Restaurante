@@ -1,18 +1,16 @@
+using System.Data.Entity.Migrations;
+using Projeto.Restaurante.Infraestrutura.Dados.Contexto;
+
 namespace Projeto.Restaurante.Infraestrutura.Dados.Migrations
 {
-    using System;
-    using System.Data.Entity;
-    using System.Data.Entity.Migrations;
-    using System.Linq;
-
-    internal sealed class Configuration : DbMigrationsConfiguration<Contexto.ProjetoRestauranteContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<ProjetoRestauranteContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
         }
 
-        protected override void Seed(Contexto.ProjetoRestauranteContext context)
+        protected override void Seed(ProjetoRestauranteContext context)
         {
             //  This method will be called after migrating to the latest version.
 

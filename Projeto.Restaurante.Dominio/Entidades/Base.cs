@@ -3,7 +3,7 @@ using Projeto.Restaurante.Dominio.Exceptions;
 
 namespace Projeto.Restaurante.Dominio.Entidades
 {
-    public class Base
+    public abstract class Base
     {
         #region Propriedades
         public int Id { get; protected set; }

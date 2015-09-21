@@ -39,8 +39,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AplicacaoBase.cs" />
+    <Compile Include="AplicacaoCategoria.cs" />
+    <Compile Include="AplicacaoItem.cs" />
+    <Compile Include="AplicacaoMesa.cs" />
+    <Compile Include="AplicacaoOpcao.cs" />
+    <Compile Include="AplicacaoPedido.cs" />
+    <Compile Include="AplicacaoPrato.cs" />
+    <Compile Include="Interfaces\IAplicacaoBase.cs" />
+    <Compile Include="Interfaces\IAplicacaoCategoria.cs" />
+    <Compile Include="Interfaces\IAplicacaoItem.cs" />
+    <Compile Include="Interfaces\IAplicacaoMesa.cs" />
+    <Compile Include="Interfaces\IAplicacaoOpcao.cs" />
+    <Compile Include="Interfaces\IAplicacaoPedido.cs" />
+    <Compile Include="Interfaces\IAplicacaoPrato.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Projeto.Restaurante.Dominio\Projeto.Restaurante.Dominio.csproj">
+      <Project>{a88038b0-3a55-4b84-90b2-2163ba20ce96}</Project>
+      <Name>Projeto.Restaurante.Dominio</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

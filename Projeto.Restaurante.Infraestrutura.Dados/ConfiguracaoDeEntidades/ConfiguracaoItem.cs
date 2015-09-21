@@ -9,14 +9,29 @@ namespace Projeto.Restaurante.Infraestrutura.Dados.ConfiguracaoDeEntidades
         {
             ToTable("Itens");
 
+            #region Base
             HasKey(x => x.Id);
 
             Property(x => x.GlobalId)
-                 .IsRequired();
+                .IsRequired();
 
-            HasRequired(x => x.Pedido);
+            Property(x => x.DataCadastro)
+                .IsRequired();
 
-            HasRequired(x => x.Prato);
+            Property(x => x.DataUltimaAlteracao)
+                .IsOptional();
+
+            Property(x => x.Ativo)
+                .IsRequired();
+            #endregion
+
+            HasRequired(x => x.Pedido)
+                .WithMany()
+                .HasForeignKey(x => x.PedidoId);
+
+            HasRequired(x => x.Prato)
+                .WithMany()
+                .HasForeignKey(x => x.PratoId);
 
             HasMany(x => x.Opcoes);
         }

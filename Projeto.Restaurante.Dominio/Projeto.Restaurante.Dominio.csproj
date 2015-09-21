@@ -38,12 +38,30 @@
     <Compile Include="Entidades\Pedido.cs" />
     <Compile Include="Entidades\Prato.cs" />
     <Compile Include="Exceptions\MyException.cs" />
+    <Compile Include="Interfaces\Repositorios\IRepositorioBase.cs" />
+    <Compile Include="Interfaces\Repositorios\IRepositorioCategoria.cs" />
+    <Compile Include="Interfaces\Repositorios\IRepositorioItem.cs" />
+    <Compile Include="Interfaces\Repositorios\IRepositorioMesa.cs" />
+    <Compile Include="Interfaces\Repositorios\IRepositorioOpcao.cs" />
+    <Compile Include="Interfaces\Repositorios\IRepositorioPedido.cs" />
+    <Compile Include="Interfaces\Repositorios\IRepositorioPrato.cs" />
+    <Compile Include="Interfaces\Servicos\IServicoBase.cs" />
+    <Compile Include="Interfaces\Servicos\IServicoCategoria.cs" />
+    <Compile Include="Interfaces\Servicos\IServicoItem.cs" />
+    <Compile Include="Interfaces\Servicos\IServicoMesa.cs" />
+    <Compile Include="Interfaces\Servicos\IServicoOpcao.cs" />
+    <Compile Include="Interfaces\Servicos\IServicoPedido.cs" />
+    <Compile Include="Interfaces\Servicos\IServicoPrato.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Servicos\ServicoBase.cs" />
+    <Compile Include="Servicos\ServicoCategoria.cs" />
+    <Compile Include="Servicos\ServicoItem.cs" />
+    <Compile Include="Servicos\ServicoMesa.cs" />
+    <Compile Include="Servicos\ServicoOpcao.cs" />
+    <Compile Include="Servicos\ServicoPedido.cs" />
+    <Compile Include="Servicos\ServicoPrato.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Interfaces\Entidades\" />
-    <Folder Include="Servicos\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Reference Include="System" />
   </ItemGroup>
