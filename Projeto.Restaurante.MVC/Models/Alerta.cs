@@ -1,4 +1,6 @@
-﻿namespace Projeto.Restaurante.MVC.Models
+﻿using Projeto.Restaurante.MVC.Models.Enuns;
+
+namespace Projeto.Restaurante.MVC.Models
 {
     public class Alerta
     {

@@ -13,17 +13,7 @@ namespace Projeto.Restaurante.Dominio.Entidades
         #endregion
 
         #region Construtores
-        public Item()
-        {
-            
-        }
-        #endregion
 
-        #region Listar
-        public static IList<Item> Listar(Pedido pedido)
-        {
-            return new List<Item>();
-        }
         #endregion
     }
 }

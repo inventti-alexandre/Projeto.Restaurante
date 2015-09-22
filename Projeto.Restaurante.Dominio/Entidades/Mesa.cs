@@ -7,12 +7,7 @@
         #endregion
 
         #region Construtores
-        public Mesa()
-        {
-            
-        }
-        #endregion
 
-        //Usar o Using no Context
+        #endregion
     }
 }

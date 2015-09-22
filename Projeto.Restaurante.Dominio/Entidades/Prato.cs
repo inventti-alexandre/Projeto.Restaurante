@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Projeto.Restaurante.Dominio.Entidades
+﻿namespace Projeto.Restaurante.Dominio.Entidades
 {
     public class Prato : Base
     {
@@ -9,21 +7,19 @@ namespace Projeto.Restaurante.Dominio.Entidades
         public decimal Preco { get; private set; }
         public string Descricao { get; private set; }
         public bool Disponivel { get; private set; }
-        public virtual IList<Categoria> Categorias { get; private set; }
+        public int CategoriaId { get; private set; }
+        public virtual Categoria Categoria { get; private set; }
         #endregion
 
         #region Construtores
-        public Prato()
-        {
 
-        }
-        #endregion
-
-        #region Listar
-        public static IList<Prato> Listar(Categoria categoria)
-        {
-            return new List<Prato>();
-        }
         #endregion
     }
 }
+
+//Criar ViewModel para cada operação
+//Configurar repositório
+//Region em tudo
+//Testes
+// Serviços
+//Async

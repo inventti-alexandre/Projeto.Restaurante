@@ -1,4 +1,4 @@
-﻿namespace Projeto.Restaurante.MVC.Models
+﻿namespace Projeto.Restaurante.MVC.Models.Enuns
 {
     public enum TipoDeAlerta
     {

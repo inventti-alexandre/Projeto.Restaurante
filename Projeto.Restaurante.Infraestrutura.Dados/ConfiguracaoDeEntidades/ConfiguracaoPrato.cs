@@ -40,9 +40,10 @@ namespace Projeto.Restaurante.Infraestrutura.Dados.ConfiguracaoDeEntidades
             Property(x => x.Disponivel)
                 .IsRequired();
 
-            HasMany(x => x.Categorias)
-                .WithMany(x => x.Pratos)
-                .Map(x => x.ToTable("PratosCategorias"));
+            HasRequired(x => x.Categoria)
+                .WithMany()
+                .HasForeignKey(x => x.CategoriaId);
+
         }
     }
 }
