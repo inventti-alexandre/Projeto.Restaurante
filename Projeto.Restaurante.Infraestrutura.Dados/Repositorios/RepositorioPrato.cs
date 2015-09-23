@@ -15,6 +15,7 @@ namespace Projeto.Restaurante.Infraestrutura.Dados.Repositorios
         }
         #endregion
 
+        #region Existe Nomenclatura
         public bool ExisteNomenclaturaInformada(string nome)
         {
             var resultado = Convert.ToBoolean(Db.Pratos.Where(x => x.Nome == nome).Select(x => x.Id));
@@ -26,5 +27,6 @@ namespace Projeto.Restaurante.Infraestrutura.Dados.Repositorios
             var resultado = Convert.ToBoolean(Db.Pratos.Where(x => x.Nome == nome && x.Id != id).Select(x => x.Id));
             return resultado;
         }
+        #endregion
     }
 }

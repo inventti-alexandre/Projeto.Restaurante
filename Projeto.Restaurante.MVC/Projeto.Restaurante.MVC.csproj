@@ -142,10 +142,12 @@
     <Compile Include="Models\Alerta.cs" />
     <Compile Include="Models\Enuns\TipoDeAlerta.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\Mesa\ViewModelCreateMesa.cs" />
+    <Compile Include="ViewModels\Mesa\ViewModelDetailsMesa.cs" />
+    <Compile Include="ViewModels\Mesa\ViewModelEditMesa.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="ViewModels\ViewModelCategoria.cs" />
     <Compile Include="ViewModels\ViewModelItem.cs" />
-    <Compile Include="ViewModels\ViewModelMesa.cs" />
     <Compile Include="ViewModels\ViewModelOpcao.cs" />
     <Compile Include="ViewModels\ViewModelPedido.cs" />
     <Compile Include="ViewModels\ViewModelPrato.cs" />
@@ -210,6 +212,11 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="ViewModels\Categoria\" />
+    <Folder Include="ViewModels\Item\" />
+    <Folder Include="ViewModels\Opcao\" />
+    <Folder Include="ViewModels\Pedido\" />
+    <Folder Include="ViewModels\Prato\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

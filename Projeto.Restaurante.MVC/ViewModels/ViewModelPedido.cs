@@ -10,8 +10,8 @@ namespace Projeto.Restaurante.MVC.ViewModels
         [Required(ErrorMessage = "Obrigatório!", AllowEmptyStrings = false)]
         public int MesaId { get; set; }
 
-        [DisplayName("Mesa")]
-        public virtual ViewModelMesa Mesa { get; set; }
+        //[DisplayName("Mesa")]
+        //public virtual ViewModelMesa Mesa { get; set; }
 
         [DisplayName("Itens")]
         public virtual IEnumerable<ViewModelItem> Itens { get; set; }

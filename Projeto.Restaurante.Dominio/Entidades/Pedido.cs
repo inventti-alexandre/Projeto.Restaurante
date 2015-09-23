@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace Projeto.Restaurante.Dominio.Entidades
 {
@@ -12,6 +13,13 @@ namespace Projeto.Restaurante.Dominio.Entidades
 
         #region Construtores
 
+        #endregion
+
+        #region Validações
+        private bool ConstaItens()
+        {
+            return Itens.Any() && Itens.Select(x => x.Ativo).Any();
+        }
         #endregion
         //Verificar se já consta pedido para mesa
         //Pedidos já foram entregues
