@@ -1,12 +1,15 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using Projeto.Restaurante.MVC.ViewModels.Categoria;
 
-namespace Projeto.Restaurante.MVC.ViewModels
+namespace Projeto.Restaurante.MVC.ViewModels.Prato
 {
-    public class ViewModelPrato : ViewModelBase
+    public class ViewModelDetailsPrato
     {
         #region Propriedades
+        [Key]
+        public int Id { get; set; }
+
         [DisplayName("Nome")]
         [DataType(DataType.Text)]
         [Required(ErrorMessage = "Obrigatório!", AllowEmptyStrings = false)]
@@ -29,8 +32,10 @@ namespace Projeto.Restaurante.MVC.ViewModels
         [Required(ErrorMessage = "Obrigatório!", AllowEmptyStrings = false)]
         public bool Disponivel { get; set; }
 
-        [DisplayName("Categorias")]
-        public virtual IEnumerable<ViewModelCategoria> Categorias { get; set; }
+        [DisplayName("Categoria")]
+        public ViewModelDetailsCategoria Categoria { get; private set; }
+
+        public bool Ativo { get; set; }
         #endregion
     }
 }

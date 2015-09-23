@@ -1,7 +1,11 @@
 ﻿using AutoMapper;
 using Projeto.Restaurante.Dominio.Entidades;
-using Projeto.Restaurante.MVC.ViewModels;
+using Projeto.Restaurante.MVC.ViewModels.Categoria;
+using Projeto.Restaurante.MVC.ViewModels.Item;
 using Projeto.Restaurante.MVC.ViewModels.Mesa;
+using Projeto.Restaurante.MVC.ViewModels.Opcao;
+using Projeto.Restaurante.MVC.ViewModels.Pedido;
+using Projeto.Restaurante.MVC.ViewModels.Prato;
 
 namespace Projeto.Restaurante.MVC.AutoMapper
 {
@@ -9,16 +13,29 @@ namespace Projeto.Restaurante.MVC.AutoMapper
     {
         protected override void Configure()
         {
-            Mapper.CreateMap<ViewModelCategoria, Categoria>();
-            Mapper.CreateMap<ViewModelItem, Item>();
+            Mapper.CreateMap<ViewModelCreateCategoria, Categoria>();
+            Mapper.CreateMap<ViewModelDetailsCategoria, Categoria>();
+            Mapper.CreateMap<ViewModelEditCategoria, Categoria>();
+
+            Mapper.CreateMap<ViewModelCreateItem, Item>();
+            Mapper.CreateMap<ViewModelDetailsItem, Item>();
+            Mapper.CreateMap<ViewModelEditItem, Item>();
 
             Mapper.CreateMap<ViewModelCreateMesa, Mesa>();
             Mapper.CreateMap<ViewModelDetailsMesa, Mesa>();
             Mapper.CreateMap<ViewModelEditMesa, Mesa>();
 
-            Mapper.CreateMap<ViewModelOpcao, Opcao>();
-            Mapper.CreateMap<ViewModelPedido, Pedido>();
-            Mapper.CreateMap<ViewModelPrato, Prato>();
+            Mapper.CreateMap<ViewModelCreateOpcao, Opcao>();
+            Mapper.CreateMap<ViewModelDetailsOpcao, Opcao>();
+            Mapper.CreateMap<ViewModelEditOpcao, Opcao>();
+
+            Mapper.CreateMap<ViewModelCreatePedido, Pedido>();
+            Mapper.CreateMap<ViewModelDetailsPedido, Pedido>();
+            Mapper.CreateMap<ViewModelEditPedido, Pedido>();
+
+            Mapper.CreateMap<ViewModelCreatePrato, Prato>();
+            Mapper.CreateMap<ViewModelDetailsPrato, Prato>();
+            Mapper.CreateMap<ViewModelEditPrato, Prato>();
         }
     }
 }
