@@ -7,7 +7,10 @@
         #endregion
 
         #region Construtores
-
+        public Mesa()
+        {
+            
+        }
         #endregion
     }
 }

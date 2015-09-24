@@ -12,7 +12,10 @@
         #endregion
 
         #region Construtores
-
+        public Prato()
+        {
+            
+        }
         #endregion
     }
 }

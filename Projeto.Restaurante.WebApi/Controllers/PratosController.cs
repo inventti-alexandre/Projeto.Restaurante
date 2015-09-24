@@ -19,24 +19,24 @@ namespace Projeto.Restaurante.WebApi.Controllers
             _aplicacao = aplicacao;
         }
 
-        #region Listagem
-        [HttpGet]
-        [Route("Api/Pratos/Categoria/{categoriaId:int}")]
-        public HttpResponseMessage ListarPorCategoria(int categoriaId)
-        {
-            IEnumerable<ViewModelGetPrato> listViewModelGetPrato;
-            try
-            {
-                IEnumerable<Prato> pratos = _aplicacao.Listar(new Categoria(categoriaId));//Pegar pelo categoriaId
-                listViewModelGetPrato = Mapper.Map<IEnumerable<Prato>, IEnumerable<ViewModelGetPrato>>(pratos);
-            }
-            catch (MyException ex)
-            {
-                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message, ex);
-            }
+        //#region Listagem
+        //[HttpGet]
+        //[Route("Api/Pratos/Categoria/{categoriaId:int}")]
+        //public HttpResponseMessage ListarPorCategoria(int categoriaId)
+        //{
+        //    IEnumerable<ViewModelGetPrato> listViewModelGetPrato;
+        //    try
+        //    {
+        //        IEnumerable<Prato> pratos = _aplicacao.Listar(new Categoria(categoriaId));
+        //        listViewModelGetPrato = Mapper.Map<IEnumerable<Prato>, IEnumerable<ViewModelGetPrato>>(pratos);
+        //    }
+        //    catch (MyException ex)
+        //    {
+        //        return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message, ex);
+        //    }
 
-            return Request.CreateResponse(HttpStatusCode.OK, listViewModelGetPrato);
-        }
-        #endregion
+        //    return Request.CreateResponse(HttpStatusCode.OK, listViewModelGetPrato);
+        //}
+        //#endregion
     }
 }
