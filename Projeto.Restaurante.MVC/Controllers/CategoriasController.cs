@@ -3,15 +3,15 @@ using System.Web.Mvc;
 using AutoMapper;
 using Projeto.Restaurante.Aplicacao.Interfaces;
 using Projeto.Restaurante.Dominio.Entidades;
-using Projeto.Restaurante.MVC.ViewModels.Mesa;
+using Projeto.Restaurante.MVC.ViewModels.Categoria;
 
 namespace Projeto.Restaurante.MVC.Controllers
 {
-    public class MesasController : Controller
+    public class CategoriasController : Controller
     {
-        private readonly IAplicacaoMesa _aplicacao;
+        private readonly IAplicacaoCategoria _aplicacao;
 
-        public MesasController(IAplicacaoMesa aplicacao)
+        public CategoriasController(IAplicacaoCategoria aplicacao)
         {
             _aplicacao = aplicacao;
         }
@@ -19,10 +19,10 @@ namespace Projeto.Restaurante.MVC.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            IEnumerable<ViewModelDetailsMesa> listViewModelDetails;
+            IEnumerable<ViewModelDetailsCategoria> listViewModelDetails;
             using (_aplicacao)
             {
-                listViewModelDetails = Mapper.Map<IEnumerable<Mesa>, IEnumerable<ViewModelDetailsMesa>>(_aplicacao.GetAll());
+                listViewModelDetails = Mapper.Map<IEnumerable<Categoria>, IEnumerable<ViewModelDetailsCategoria>>(_aplicacao.GetAll());
             }
             return View(listViewModelDetails);
         }
@@ -30,10 +30,10 @@ namespace Projeto.Restaurante.MVC.Controllers
         [HttpGet]
         public ActionResult Details(int id)
         {
-            ViewModelDetailsMesa viewModelDetails;
+            ViewModelDetailsCategoria viewModelDetails;
             using (_aplicacao)
             {
-                viewModelDetails = Mapper.Map<Mesa, ViewModelDetailsMesa>(_aplicacao.GetById(id));
+                viewModelDetails = Mapper.Map<Categoria, ViewModelDetailsCategoria>(_aplicacao.GetById(id));
             }
             return View(viewModelDetails);
         }
@@ -46,13 +46,13 @@ namespace Projeto.Restaurante.MVC.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(ViewModelCreateMesa viewModelCreate)
+        public ActionResult Create(ViewModelCreateCategoria viewModelCreate)
         {
             if (!ModelState.IsValid)
                 return View(viewModelCreate);
             using (_aplicacao)
             {
-                _aplicacao.Add(Mapper.Map<ViewModelCreateMesa, Mesa>(viewModelCreate));
+                _aplicacao.Add(Mapper.Map<ViewModelCreateCategoria, Categoria>(viewModelCreate));
             }
             return RedirectToAction("Index");
         }
@@ -60,23 +60,23 @@ namespace Projeto.Restaurante.MVC.Controllers
         [HttpGet]
         public ActionResult Edit(int id)
         {
-            ViewModelEditMesa viewModelEdit;
+            ViewModelEditCategoria viewModelEdit;
             using (_aplicacao)
             {
-                viewModelEdit = Mapper.Map<Mesa, ViewModelEditMesa>(_aplicacao.GetById(id));
+                viewModelEdit = Mapper.Map<Categoria, ViewModelEditCategoria>(_aplicacao.GetById(id));
             }
             return View(viewModelEdit);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(ViewModelEditMesa viewModelEdit)
+        public ActionResult Edit(ViewModelEditCategoria viewModelEdit)
         {
             if (!ModelState.IsValid)
                 return View(viewModelEdit);
             using (_aplicacao)
             {
-                _aplicacao.Update(Mapper.Map<ViewModelEditMesa, Mesa>(viewModelEdit));
+                _aplicacao.Update(Mapper.Map<ViewModelEditCategoria, Categoria>(viewModelEdit));
             }
             return RedirectToAction("Index");
         }
@@ -91,6 +91,5 @@ namespace Projeto.Restaurante.MVC.Controllers
             }
             return RedirectToAction("Index");
         }
-
     }
 }

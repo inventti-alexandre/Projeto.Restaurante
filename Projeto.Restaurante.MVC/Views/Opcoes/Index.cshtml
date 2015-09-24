@@ -1,6 +1,6 @@
 ﻿@using Projeto.Restaurante.MVC.Models
 @using Projeto.Restaurante.MVC.Models.Enuns
-@model IEnumerable<Projeto.Restaurante.MVC.ViewModels.Mesa.ViewModelDetailsMesa>
+@model IEnumerable<Projeto.Restaurante.MVC.ViewModels.Opcao.ViewModelDetailsOpcao>
 
 @{
     ViewBag.Title = "Listar";
@@ -74,6 +74,6 @@ else
 
 <div class="form-group">
     <div class="col-md-2">
-        @Html.ActionLink("Home", "Index", "Home", null, new { @class = "btn btn-default btn-block" })
+        @Html.ActionLink("Home", "Index", "Home", null, new {@class = "btn btn-default btn-block"})
     </div>
 </div>

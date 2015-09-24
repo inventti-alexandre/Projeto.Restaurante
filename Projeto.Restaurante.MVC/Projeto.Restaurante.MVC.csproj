@@ -134,8 +134,10 @@
     <Compile Include="AutoMapper\AutoMapperConfig.cs" />
     <Compile Include="AutoMapper\DomainToViewModelMappingProfile.cs" />
     <Compile Include="AutoMapper\ViewModelToDomainMappingProfile.cs" />
+    <Compile Include="Controllers\CategoriasController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MesasController.cs" />
+    <Compile Include="Controllers\OpcoesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -218,6 +220,14 @@
     <Content Include="Views\Mesas\Edit.cshtml" />
     <Content Include="Views\Util\Alert.cshtml" />
     <Content Include="Views\Util\AlertInline.cshtml" />
+    <Content Include="Views\Opcoes\Index.cshtml" />
+    <Content Include="Views\Opcoes\Create.cshtml" />
+    <Content Include="Views\Opcoes\Details.cshtml" />
+    <Content Include="Views\Opcoes\Edit.cshtml" />
+    <Content Include="Views\Categorias\Index.cshtml" />
+    <Content Include="Views\Categorias\Edit.cshtml" />
+    <Content Include="Views\Categorias\Details.cshtml" />
+    <Content Include="Views\Categorias\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -22,3 +22,17 @@ select,
 textarea {
     max-width: 280px;
 }
+
+/*Formatação Geral*/
+* { font-family: Times New Roman,Sans-Serif; }
+
+/*Formatação de tabelas*/
+.table { border: none; width: 100%; padding: 15px; }
+.table thead tr:nth-child(1) { background-color: #5bc0de; color: #FFFFFF; /*Título*/ }
+.table thead tr th { padding: 2px; text-align: center; }
+.table tbody tr:nth-child(odd) { background-color: beige; /*Ímpar*/ }
+.table tbody tr:nth-child(even) { background-color: blanchedalmond; /*Par*/ }
+.table thead tr th, .table tbody tr td { border: 1px solid #FFFFFF !important; }
+.table tbody tr:hover{ background-color: #279dae; }
+.table tbody tr td { padding: 3px; }
+.table tfoot tr td { background-color: #5bc0de; color: #FFFFFF; padding: 2px; font-weight: bold; text-align: right; /*Rodapé*/ }

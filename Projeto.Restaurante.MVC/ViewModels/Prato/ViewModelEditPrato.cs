@@ -24,7 +24,7 @@ namespace Projeto.Restaurante.MVC.ViewModels.Prato
         [DisplayName("Descrição")]
         [DataType(DataType.MultilineText)]
         [Required(ErrorMessage = "Obrigatório!", AllowEmptyStrings = false)]
-        [StringLength(100, MinimumLength = 10, ErrorMessage = "Mínimo de {2} e Máximo de {1} caracteres!")]
+        [StringLength(256, MinimumLength = 10, ErrorMessage = "Mínimo de {2} e Máximo de {1} caracteres!")]
         public string Descricao { get; set; }
 
         [DisplayName("Disponível?")]
