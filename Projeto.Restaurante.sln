@@ -15,8 +15,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4 - Infraestrutura", "4 - I
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.1 - Dados", "4.1 - Dados", "{79F3084A-12E5-419F-8439-BA214D2A3AD4}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.2 - Transversal", "4.2 - Transversal", "{E6A7831C-575C-48D5-AA67-90747DF8942E}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Projeto.Restaurante.MVC", "Projeto.Restaurante.MVC\Projeto.Restaurante.MVC.csproj", "{95AE45A1-96C2-4447-A0BB-65C90E63D0AC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Projeto.Restaurante.Dominio", "Projeto.Restaurante.Dominio\Projeto.Restaurante.Dominio.csproj", "{A88038B0-3A55-4B84-90B2-2163BA20CE96}"
@@ -26,6 +24,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Projeto.Restaurante.Aplicacao", "Projeto.Restaurante.Aplicacao\Projeto.Restaurante.Aplicacao.csproj", "{C01BCE4F-82CE-48AC-92FA-C3550B553DDE}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5 - Testes", "5 - Testes", "{37FF8191-9B6C-4911-81FF-A47F7DCEB037}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Projeto.Restaurante.WebApi", "Projeto.Restaurante.WebApi\Projeto.Restaurante.WebApi.csproj", "{D7CEB5A0-0296-43F0-A198-3F541BACA6A1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -49,16 +49,20 @@ Global
 		{C01BCE4F-82CE-48AC-92FA-C3550B553DDE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C01BCE4F-82CE-48AC-92FA-C3550B553DDE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C01BCE4F-82CE-48AC-92FA-C3550B553DDE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D7CEB5A0-0296-43F0-A198-3F541BACA6A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7CEB5A0-0296-43F0-A198-3F541BACA6A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7CEB5A0-0296-43F0-A198-3F541BACA6A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7CEB5A0-0296-43F0-A198-3F541BACA6A1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{79F3084A-12E5-419F-8439-BA214D2A3AD4} = {F3D90C69-3C0F-4A0A-86EF-1D0C3067CB2D}
-		{E6A7831C-575C-48D5-AA67-90747DF8942E} = {F3D90C69-3C0F-4A0A-86EF-1D0C3067CB2D}
 		{95AE45A1-96C2-4447-A0BB-65C90E63D0AC} = {3E328788-C6A8-462A-A5AA-28E4137DAD2D}
 		{A88038B0-3A55-4B84-90B2-2163BA20CE96} = {154CBE17-FEEA-46B7-943A-7320B8179BB3}
 		{FCB0F099-0C7A-4C36-A836-8B6C88665078} = {79F3084A-12E5-419F-8439-BA214D2A3AD4}
 		{C01BCE4F-82CE-48AC-92FA-C3550B553DDE} = {78CCE5AA-C856-4BAB-AB9B-EFCDA4ED878C}
+		{D7CEB5A0-0296-43F0-A198-3F541BACA6A1} = {13D05849-FC14-49C9-BCDE-79D5D34202BA}
 	EndGlobalSection
 EndGlobal

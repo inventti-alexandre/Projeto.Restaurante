@@ -13,27 +13,27 @@ namespace Projeto.Restaurante.Dominio.Servicos
             _repository = repository;
         }
 
-        public void Add(TEntity obj)
+        public virtual void Add(TEntity obj)
         {
             _repository.Add(obj);
         }
 
-        public TEntity GetById(int id)
+        public virtual TEntity GetById(int id)
         {
             return _repository.GetById(id);
         }
 
-        public IEnumerable<TEntity> GetAll()
+        public virtual IEnumerable<TEntity> GetAll()
         {
             return _repository.GetAll();
         }
 
-        public void Update(TEntity obj)
+        public virtual void Update(TEntity obj)
         {
             _repository.Update(obj);
         }
 
-        public void Remove(TEntity obj)
+        public virtual void Remove(TEntity obj)
         {
             _repository.Remove(obj);
         }

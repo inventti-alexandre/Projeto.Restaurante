@@ -14,7 +14,7 @@ namespace Projeto.Restaurante.Dominio.Entidades
         #endregion
 
         #region Validações
-        /// <exception cref="MyException"></exception>
+        /// <exception cref="MyException">Id é obrigatório!</exception>
         public virtual void ValidarId()
         {
             if (this == null || Id <= 0)

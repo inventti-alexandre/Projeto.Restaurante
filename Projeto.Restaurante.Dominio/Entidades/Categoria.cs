@@ -10,7 +10,10 @@ namespace Projeto.Restaurante.Dominio.Entidades
         #endregion
 
         #region Construtores
-
+        public Categoria(int id)
+        {
+            Id = id;
+        }
         #endregion
     }
 }

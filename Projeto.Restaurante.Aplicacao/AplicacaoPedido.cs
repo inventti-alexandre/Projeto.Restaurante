@@ -13,5 +13,10 @@ namespace Projeto.Restaurante.Aplicacao
         {
             _servicoPedido = servicoPedido;
         }
+
+        public Pedido PedidoCorrente(Mesa mesa)
+        {
+            return _servicoPedido.PedidoCorrente(mesa);
+        }
     }
 }
