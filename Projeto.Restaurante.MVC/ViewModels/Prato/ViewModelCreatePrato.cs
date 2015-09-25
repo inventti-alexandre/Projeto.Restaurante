@@ -1,5 +1,7 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using Projeto.Restaurante.MVC.ViewModels.Categoria;
 
 namespace Projeto.Restaurante.MVC.ViewModels.Prato
 {
@@ -27,7 +29,11 @@ namespace Projeto.Restaurante.MVC.ViewModels.Prato
         [DisplayName("Disponível?")]
         [Required(ErrorMessage = "Obrigatório!", AllowEmptyStrings = false)]
         public bool Disponivel { get; set; }
-        
+
+        [DisplayName("Categoria")]
+        [Required(ErrorMessage = "Obrigatório!", AllowEmptyStrings = false)]
+        public IEnumerable<ViewModelDetailsCategoria> CategoriaId { get; set; }
+
         public bool Ativo { get; set; }
         #endregion
     }

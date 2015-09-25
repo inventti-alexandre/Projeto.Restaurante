@@ -33,7 +33,7 @@ namespace Projeto.Restaurante.MVC.ViewModels.Prato
         public bool Disponivel { get; set; }
 
         [DisplayName("Categoria")]
-        public ViewModelDetailsCategoria Categoria { get; private set; }
+        public ViewModelDetailsCategoria Categoria { get; set; }
 
         public bool Ativo { get; set; }
         #endregion
