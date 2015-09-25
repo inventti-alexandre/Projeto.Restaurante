@@ -11,7 +11,7 @@ namespace Projeto.Restaurante.MVC.ViewModels.Prato
         [DisplayName("Nome")]
         [DataType(DataType.Text)]
         [Required(ErrorMessage = "Obrigatório!", AllowEmptyStrings = false)]
-        [StringLength(100, MinimumLength = 10, ErrorMessage = "Mínimo de {2} e Máximo de {1} caracteres!")]
+        [StringLength(100, MinimumLength = 5, ErrorMessage = "Mínimo de {2} e Máximo de {1} caracteres!")]
         public string Nome { get; set; }
 
         [DisplayName("Preço")]
@@ -32,7 +32,10 @@ namespace Projeto.Restaurante.MVC.ViewModels.Prato
 
         [DisplayName("Categoria")]
         [Required(ErrorMessage = "Obrigatório!", AllowEmptyStrings = false)]
-        public IEnumerable<ViewModelDetailsCategoria> CategoriaId { get; set; }
+        public int CategoriaId { get; set; }
+
+        [DisplayName("Categoria")]
+        public IEnumerable<ViewModelDetailsCategoria> Categorias { get; set; }
 
         public bool Ativo { get; set; }
         #endregion

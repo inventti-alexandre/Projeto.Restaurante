@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 
-namespace Projeto.Restaurante.WebApi
+namespace Projeto.Restaurante.Servicos.WebApi
 {
     public class FilterConfig
     {

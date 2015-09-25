@@ -1,6 +1,6 @@
 ﻿using System.Web.Optimization;
 
-namespace Projeto.Restaurante.WebApi
+namespace Projeto.Restaurante.Servicos.WebApi
 {
     public class BundleConfig
     {

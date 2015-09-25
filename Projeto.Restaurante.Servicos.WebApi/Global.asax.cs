@@ -4,7 +4,7 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using Projeto.Restaurante.WebApi.AutoMapper;
 
-namespace Projeto.Restaurante.WebApi
+namespace Projeto.Restaurante.Servicos.WebApi
 {
     public class WebApiApplication : HttpApplication
     {

@@ -27,6 +27,13 @@ namespace Projeto.Restaurante.MVC.Controllers
             {
                 listViewModelDetails = Mapper.Map<IEnumerable<Prato>, IEnumerable<ViewModelDetailsPrato>>(_aplicacaoPrato.GetAll());
             }
+            using (_aplicacaoCategoria)
+            {
+                foreach (var viewModelDetailsPrato in listViewModelDetails)
+                {
+                    viewModelDetailsPrato.Categoria = Mapper.Map<Categoria, ViewModelDetailsCategoria>(_aplicacaoCategoria.GetById(viewModelDetailsPrato.CategoriaId));
+                }
+            }
             return View(listViewModelDetails);
         }
 
@@ -38,6 +45,10 @@ namespace Projeto.Restaurante.MVC.Controllers
             {
                 viewModelDetails = Mapper.Map<Prato, ViewModelDetailsPrato>(_aplicacaoPrato.GetById(id));
             }
+            using (_aplicacaoCategoria)
+            {
+                viewModelDetails.Categoria = Mapper.Map<Categoria, ViewModelDetailsCategoria>(_aplicacaoCategoria.GetById(viewModelDetails.CategoriaId));
+            }
             return View(viewModelDetails);
         }
 
@@ -48,9 +59,9 @@ namespace Projeto.Restaurante.MVC.Controllers
             IEnumerable<ViewModelDetailsCategoria> listViewModelDetails;
             using (_aplicacaoCategoria)
             {
-                listViewModelDetails = Mapper.Map<IEnumerable<Categoria>, IEnumerable<ViewModelDetailsCategoria>>(_aplicacaoCategoria.GetAll());
+                listViewModelDetails = Mapper.Map<IEnumerable<Categoria>, IEnumerable<ViewModelDetailsCategoria>>(_aplicacaoCategoria.GetAll(true));
             }
-            viewModelCreate.CategoriaId = listViewModelDetails;
+            viewModelCreate.Categorias = listViewModelDetails;
             return View(viewModelCreate);
         }
 
@@ -59,7 +70,16 @@ namespace Projeto.Restaurante.MVC.Controllers
         public ActionResult Create(ViewModelCreatePrato viewModelCreate)
         {
             if (!ModelState.IsValid)
+            {
+                IEnumerable<ViewModelDetailsCategoria> listViewModelDetails;
+                using (_aplicacaoCategoria)
+                {
+                    listViewModelDetails = Mapper.Map<IEnumerable<Categoria>, IEnumerable<ViewModelDetailsCategoria>>(_aplicacaoCategoria.GetAll(true));
+                }
+                viewModelCreate.Categorias = listViewModelDetails;
+
                 return View(viewModelCreate);
+            }
             using (_aplicacaoPrato)
             {
                 _aplicacaoPrato.Add(Mapper.Map<ViewModelCreatePrato, Prato>(viewModelCreate));

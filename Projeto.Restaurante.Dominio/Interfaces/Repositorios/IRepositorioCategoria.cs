@@ -1,4 +1,5 @@
-﻿using Projeto.Restaurante.Dominio.Entidades;
+﻿using System.Collections.Generic;
+using Projeto.Restaurante.Dominio.Entidades;
 
 namespace Projeto.Restaurante.Dominio.Interfaces.Repositorios
 {
@@ -6,5 +7,6 @@ namespace Projeto.Restaurante.Dominio.Interfaces.Repositorios
     {
         bool ExisteNomenclaturaInformada(string nome);
         bool ExisteNomenclaturaInformada(int id, string nome);
+        IEnumerable<Categoria> GetAll(bool ativo);
     }
 }

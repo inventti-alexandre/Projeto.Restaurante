@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Projeto.Restaurante.Servicos.WebApi.AutoMapper;
 
 namespace Projeto.Restaurante.WebApi.AutoMapper
 {

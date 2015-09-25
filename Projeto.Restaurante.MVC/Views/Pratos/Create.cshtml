@@ -49,20 +49,23 @@
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.Ativo, htmlAttributes: new {@class = "control-label col-md-2"})
+                @Html.LabelFor(model => model.Ativo, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     <div class="checkbox">
                         @Html.EditorFor(model => model.Ativo)
-                        @Html.ValidationMessageFor(model => model.Ativo, "", new {@class = "text-danger"})
+                        @Html.ValidationMessageFor(model => model.Ativo, "", new { @class = "text-danger" })
                     </div>
                 </div>
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.CategoriaId, htmlAttributes: new {@class = "control-label col-md-2"})
+                @Html.LabelFor(model => model.CategoriaId, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     <div class="checkbox">
-                        @Html.DropDownListFor(model => model.CategoriaId)
+                        @{
+                            var list = Model.Categorias.Select(x => new SelectListItem() { Value = x.Id.ToString(), Text = x.Nome }).ToList();
+                        }
+                        @Html.DropDownList("CategoriaId", list, new { @class = "form-control" })
                         @Html.ValidationMessageFor(model => model.CategoriaId, "", new { @class = "text-danger" })
                     </div>
                 </div>

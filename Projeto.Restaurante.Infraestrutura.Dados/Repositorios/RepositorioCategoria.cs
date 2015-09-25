@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Projeto.Restaurante.Dominio.Entidades;
 using Projeto.Restaurante.Dominio.Interfaces.Repositorios;
@@ -18,6 +19,11 @@ namespace Projeto.Restaurante.Infraestrutura.Dados.Repositorios
         {
             var resultado = Convert.ToBoolean(Db.Categorias.Count(x => x.Nome == nome && x.Id != id));
             return resultado;
+        }
+
+        public IEnumerable<Categoria> GetAll(bool ativo)
+        {
+            return base.GetAll().Where(x => x.Ativo == ativo).OrderBy(x => x.Nome);
         }
         #endregion
     }
