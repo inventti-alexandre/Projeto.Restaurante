@@ -9,11 +9,12 @@ namespace Projeto.Restaurante.MVC.ViewModels.Pedido
     public class ViewModelCreatePedido
     {
         #region Propriedades
+        [DisplayName("Mesa")]
         [Required(ErrorMessage = "Obrigatório!", AllowEmptyStrings = false)]
         public int MesaId { get; set; }
 
         [DisplayName("Mesa")]
-        public ViewModelDetailsMesa Mesa { get; set; }
+        public IEnumerable<ViewModelDetailsMesa> Mesas { get; set; }
 
         [DisplayName("Itens")]
         public IEnumerable<ViewModelCreateItem> Itens { get; set; }

@@ -14,6 +14,15 @@ namespace Projeto.Restaurante.Dominio.Entidades
         {
 
         }
+        public Categoria(string nome)
+        {
+            Nome = nome;
+        }
+        public Categoria(int id, string nome)
+        {
+            Id = id;
+            Nome = nome;
+        }
         #endregion
     }
 }

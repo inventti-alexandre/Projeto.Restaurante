@@ -31,6 +31,11 @@ namespace Projeto.Restaurante.Dominio.Servicos
             return base.GetAll().OrderBy(x => x.Nome);
         }
 
+        public IEnumerable<Mesa> GetAll(bool ativo)
+        {
+            return _repositorioMesa.GetAll(ativo);
+        }
+
         /// <exception cref="MyException">Nomenclatura já Cadastrada!</exception>
         public override void Update(Mesa obj)
         {

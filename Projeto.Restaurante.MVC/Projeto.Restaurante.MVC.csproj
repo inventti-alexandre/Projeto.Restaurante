@@ -138,6 +138,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MesasController.cs" />
     <Compile Include="Controllers\OpcoesController.cs" />
+    <Compile Include="Controllers\PedidoController.cs" />
     <Compile Include="Controllers\PratosController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -233,9 +234,11 @@
     <Content Include="Views\Pratos\Create.cshtml" />
     <Content Include="Views\Pratos\Details.cshtml" />
     <Content Include="Views\Pratos\Edit.cshtml" />
+    <Content Include="Views\Pedidos\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Pedido\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

@@ -10,9 +10,10 @@ namespace Projeto.Restaurante.MVC.ViewModels.Pedido
     {
         #region Propriedades
         [Key]
+        [DisplayName("Pedido")]
         public int Id { get; set; }
 
-        [Required(ErrorMessage = "Obrigatório!", AllowEmptyStrings = false)]
+        [DisplayName("Mesa")]
         public int MesaId { get; set; }
 
         [DisplayName("Mesa")]

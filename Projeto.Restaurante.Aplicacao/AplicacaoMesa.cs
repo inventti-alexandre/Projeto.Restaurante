@@ -1,4 +1,5 @@
-﻿using Projeto.Restaurante.Aplicacao.Interfaces;
+﻿using System.Collections.Generic;
+using Projeto.Restaurante.Aplicacao.Interfaces;
 using Projeto.Restaurante.Dominio.Entidades;
 using Projeto.Restaurante.Dominio.Interfaces.Servicos;
 
@@ -12,6 +13,11 @@ namespace Projeto.Restaurante.Aplicacao
             : base(servicoMesa)
         {
             _servicoMesa = servicoMesa;
+        }
+
+        public IEnumerable<Mesa> GetAll(bool ativo)
+        {
+            return _servicoMesa.GetAll(ativo);
         }
     }
 }

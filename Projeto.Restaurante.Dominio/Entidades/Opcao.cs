@@ -9,7 +9,18 @@
         #region Construtores
         public Opcao()
         {
-            
+
+        }
+
+        public Opcao(string nome)
+        {
+            Nome = nome;
+        }
+
+        public Opcao(int id, string nome)
+        {
+            Id = id;
+            Nome = nome;
         }
         #endregion
     }

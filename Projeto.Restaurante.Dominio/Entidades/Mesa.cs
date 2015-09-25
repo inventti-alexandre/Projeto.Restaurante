@@ -11,6 +11,17 @@
         {
             
         }
+
+        public Mesa(string nome)
+        {
+            Nome = nome;
+        }
+
+        public Mesa(int id, string nome)
+        {
+            Id = id;
+            Nome = nome;
+        }
         #endregion
     }
 }

@@ -16,6 +16,25 @@
         {
             
         }
+
+        public Prato(string nome, decimal preco, string descricao, bool disponivel, int categoriaId)
+        {
+            Nome = nome;
+            Preco = preco;
+            Descricao = descricao;
+            Disponivel = disponivel;
+            CategoriaId = categoriaId;
+        }
+
+        public Prato(int id, string nome, decimal preco, string descricao, bool disponivel, int categoriaId)
+        {
+            Id = id;
+            Nome = nome;
+            Preco = preco;
+            Descricao = descricao;
+            Disponivel = disponivel;
+            CategoriaId = categoriaId;
+        }
         #endregion
     }
 }

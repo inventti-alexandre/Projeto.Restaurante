@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Projeto.Restaurante.Dominio.Entidades;
 using Projeto.Restaurante.Dominio.Interfaces.Repositorios;
@@ -20,5 +21,10 @@ namespace Projeto.Restaurante.Infraestrutura.Dados.Repositorios
             return resultado;
         }
         #endregion
+
+        public IEnumerable<Mesa> GetAll(bool ativo)
+        {
+            return base.GetAll().Where(x => x.Ativo == ativo).OrderBy(x => x.Nome);
+        }
     }
 }

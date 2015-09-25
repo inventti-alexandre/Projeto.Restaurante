@@ -20,11 +20,11 @@ namespace Projeto.Restaurante.Infraestrutura.Dados.Repositorios
             var resultado = Convert.ToBoolean(Db.Categorias.Count(x => x.Nome == nome && x.Id != id));
             return resultado;
         }
-
+        #endregion
+        
         public IEnumerable<Categoria> GetAll(bool ativo)
         {
             return base.GetAll().Where(x => x.Ativo == ativo).OrderBy(x => x.Nome);
         }
-        #endregion
     }
 }
