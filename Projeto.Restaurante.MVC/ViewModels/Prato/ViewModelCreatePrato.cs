@@ -18,7 +18,6 @@ namespace Projeto.Restaurante.MVC.ViewModels.Prato
         [DataType(DataType.Currency)]
         [Required(ErrorMessage = "Obrigatório!", AllowEmptyStrings = false)]
         [Range(typeof(decimal), "0", "999999")]
-        [DisplayFormat(DataFormatString = "R$&nbsp;{0:#.###0,00}")]
         public decimal Preco { get; set; }
 
         [DisplayName("Descrição")]

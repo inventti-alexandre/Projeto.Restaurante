@@ -3,6 +3,8 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using Projeto.Restaurante.MVC.ViewModels.Item;
 using Projeto.Restaurante.MVC.ViewModels.Mesa;
+using Projeto.Restaurante.MVC.ViewModels.Opcao;
+using Projeto.Restaurante.MVC.ViewModels.Prato;
 
 namespace Projeto.Restaurante.MVC.ViewModels.Pedido
 {
@@ -20,8 +22,11 @@ namespace Projeto.Restaurante.MVC.ViewModels.Pedido
         [DisplayName("Mesa")]
         public IEnumerable<ViewModelDetailsMesa> Mesas { get; set; }
 
-        [DisplayName("Itens")]
-        public IEnumerable<ViewModelDetailsItem> Itens { get; set; }
+        [DisplayName("Pratos")]
+        public IEnumerable<ViewModelDetailsPrato> Pratos { get; set; }
+
+        [DisplayName("Opções")]
+        public IEnumerable<ViewModelDetailsOpcao> Opcoes { get; set; }
 
         public bool Ativo { get; set; }
         #endregion

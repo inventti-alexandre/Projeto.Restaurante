@@ -15,9 +15,9 @@
         <div class="panel-body">
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             <div class="form-group">
-                @Html.LabelFor(model => model.Ativo, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.Ativo, new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    <div class="checkbox">
+                    <div >
                         @Html.EditorFor(model => model.Ativo)
                         @Html.ValidationMessageFor(model => model.Ativo, "", new { @class = "text-danger" })
                     </div>
@@ -25,11 +25,11 @@
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.MesaId, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.MesaId, new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    <div class="checkbox">
+                    <div >
                         @{
-                            var list = Model.Mesas.Select(x => new SelectListItem() { Value = x.Id.ToString(), Text = x.Nome }).ToList();
+                            var list = Model.Mesas.Select(x => new SelectListItem { Value = x.Id.ToString(), Text = x.Nome }).ToList();
                         }
                         @Html.DropDownList("MesaId", list, new { @class = "form-control" })
                         @Html.ValidationMessageFor(model => model.MesaId, "", new { @class = "text-danger" })

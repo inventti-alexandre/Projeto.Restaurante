@@ -6,6 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     @Styles.Render("~/Content/css")
+    <style>
+        .control-label {
+            text-align: left !important;
+        }
+
+        .row {
+            min-height: 300px !important;
+        }
+    </style>
+
     @Scripts.Render("~/bundles/modernizr")
     @RenderSection("styles", false)
 </head>
