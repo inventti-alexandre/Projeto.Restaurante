@@ -1,0 +1,43 @@
+﻿@model Projeto.Restaurante.MVC.ViewModels.Pedido.ViewModelDetailsPedido
+
+@{
+    ViewBag.Title = "Consultar";
+}
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        Consultar
+    </div>
+    <div class="panel-body">
+        <div class="form-group">
+            <label class="control-label col-md-2">
+                @Html.DisplayNameFor(model => model.Id)
+            </label>
+            <div class="col-md-10">
+                @Html.DisplayFor(model => model.Id)
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2">
+                @Html.DisplayNameFor(model => model.MesaId)
+            </label>
+            <div class="col-md-10">
+                @Html.DisplayFor(model => model.Mesa.Nome)
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2">
+                @Html.DisplayNameFor(model => model.Ativo)
+            </label>
+            <div class="col-md-10">
+                @Html.DisplayFor(model => model.Ativo)
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="form-group">
+    <div class="col-md-2">
+        @Html.ActionLink("Listar", "Index", null, null, new { @class = "btn btn-info btn-block" })
+    </div>
+</div>

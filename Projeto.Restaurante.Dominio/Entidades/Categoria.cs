@@ -10,19 +10,19 @@ namespace Projeto.Restaurante.Dominio.Entidades
         #endregion
 
         #region Construtores
-        public Categoria()
-        {
+        //public Categoria()
+        //{
 
-        }
-        public Categoria(string nome)
-        {
-            Nome = nome;
-        }
-        public Categoria(int id, string nome)
-        {
-            Id = id;
-            Nome = nome;
-        }
+        //}
+        //public Categoria(string nome)
+        //{
+        //    Nome = nome;
+        //}
+        //public Categoria(int id, string nome)
+        //{
+        //    Id = id;
+        //    Nome = nome;
+        //}
         #endregion
     }
 }

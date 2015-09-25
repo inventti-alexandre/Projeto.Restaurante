@@ -12,10 +12,10 @@ namespace Projeto.Restaurante.Dominio.Entidades
         #endregion
 
         #region Construtores
-        public Pedido()
-        {
+        //public Pedido()
+        //{
             
-        }
+        //}
         #endregion
 
         #region Validações

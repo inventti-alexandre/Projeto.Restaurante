@@ -13,10 +13,10 @@ namespace Projeto.Restaurante.Dominio.Entidades
         #endregion
 
         #region Construtores
-        public Item()
-        {
+        //public Item()
+        //{
             
-        }
+        //}
         #endregion
     }
 }

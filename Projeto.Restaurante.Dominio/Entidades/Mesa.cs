@@ -7,21 +7,21 @@
         #endregion
 
         #region Construtores
-        public Mesa()
-        {
+        //public Mesa()
+        //{
             
-        }
+        //}
 
-        public Mesa(string nome)
-        {
-            Nome = nome;
-        }
+        //public Mesa(string nome)
+        //{
+        //    Nome = nome;
+        //}
 
-        public Mesa(int id, string nome)
-        {
-            Id = id;
-            Nome = nome;
-        }
+        //public Mesa(int id, string nome)
+        //{
+        //    Id = id;
+        //    Nome = nome;
+        //}
         #endregion
     }
 }
