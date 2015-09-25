@@ -232,6 +232,7 @@
     <Content Include="Views\Pratos\Index.cshtml" />
     <Content Include="Views\Pratos\Create.cshtml" />
     <Content Include="Views\Pratos\Details.cshtml" />
+    <Content Include="Views\Pratos\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

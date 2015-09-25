@@ -91,10 +91,16 @@ namespace Projeto.Restaurante.MVC.Controllers
         public ActionResult Edit(int id)
         {
             ViewModelEditPrato viewModelEdit;
+            IEnumerable<ViewModelDetailsCategoria> listViewModelDetails;
             using (_aplicacaoPrato)
             {
                 viewModelEdit = Mapper.Map<Prato, ViewModelEditPrato>(_aplicacaoPrato.GetById(id));
             }
+            using (_aplicacaoCategoria)
+            {
+                listViewModelDetails = Mapper.Map<IEnumerable<Categoria>, IEnumerable<ViewModelDetailsCategoria>>(_aplicacaoCategoria.GetAll(true));
+            }
+            viewModelEdit.Categorias = listViewModelDetails;
             return View(viewModelEdit);
         }
 
@@ -103,7 +109,16 @@ namespace Projeto.Restaurante.MVC.Controllers
         public ActionResult Edit(ViewModelEditPrato viewModelEdit)
         {
             if (!ModelState.IsValid)
+            {
+                IEnumerable<ViewModelDetailsCategoria> listViewModelDetails;
+                using (_aplicacaoCategoria)
+                {
+                    listViewModelDetails = Mapper.Map<IEnumerable<Categoria>, IEnumerable<ViewModelDetailsCategoria>>(_aplicacaoCategoria.GetAll(true));
+                }
+                viewModelEdit.Categorias = listViewModelDetails;
+
                 return View(viewModelEdit);
+            }
             using (_aplicacaoPrato)
             {
                 _aplicacaoPrato.Update(Mapper.Map<ViewModelEditPrato, Prato>(viewModelEdit));

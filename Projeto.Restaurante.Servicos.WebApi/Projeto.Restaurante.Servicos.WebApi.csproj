@@ -147,7 +147,20 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Projeto.Restaurante.Aplicacao\Projeto.Restaurante.Aplicacao.csproj">
+      <Project>{c01bce4f-82ce-48ac-92fa-c3550b553dde}</Project>
+      <Name>Projeto.Restaurante.Aplicacao</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Projeto.Restaurante.Dominio\Projeto.Restaurante.Dominio.csproj">
+      <Project>{a88038b0-3a55-4b84-90b2-2163ba20ce96}</Project>
+      <Name>Projeto.Restaurante.Dominio</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Projeto.Restaurante.Infraestrutura.Dados\Projeto.Restaurante.Infraestrutura.Dados.csproj">
+      <Project>{fcb0f099-0c7a-4c36-a836-8b6c88665078}</Project>
+      <Name>Projeto.Restaurante.Infraestrutura.Dados</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>
