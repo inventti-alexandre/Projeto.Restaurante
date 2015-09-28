@@ -25,8 +25,8 @@ namespace Projeto.Restaurante.Dominio.Servicos
         /// <exception cref="MyException">Já consta um pedido para Mesa Informada!</exception>
         public override void Add(Pedido obj)
         {
-            if (_repositorioPedido.ExistePedido(obj.MesaId))
-                throw new MyException("Já consta um pedido para Mesa Informada!");
+            //if (_repositorioPedido.ExistePedido(obj.MesaId))
+            //    throw new MyException("Já consta um pedido para Mesa Informada!");
 
             base.Add(obj);
         }

@@ -89,10 +89,26 @@
     }
                     }
 
-                    <div id="form-group">
+                    <div class="form-group">
                         <div class="col-md-offset-5 col-md-2">
                             <input id="btnAssociarItem" type="button" value="Associar Item" class="btn btn-info btn-block" />
                         </div>
+                    </div>
+
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover table-condensed" id="tblItens">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        Pratos
+                                    </th>
+                                    <th>
+                                        Opções
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
                     </div>
 
                 </div>
@@ -118,55 +134,15 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/Scripts/Models/Item/Item.js")
+    @Scripts.Render("~/Scripts/Models/Opcao/Opcao.js")
+    @Scripts.Render("~/Scripts/Controllers/Pedido.js")
     <script type="text/javascript">
-
-        function Validacao() {
-            if ($("#comboPrato option").length === 0 || $("#comboPrato").val() === "0") {
-                alert("Prato - Obrigatório");
-                return false;
-            }
-            return true;
-        }
-
-        function ViewModelPostOpcao(id) {
-            this.Id = id;
-        }
-
-        function ViewModelPostItem(pedidoId, pratoId, opcoes) {
-            this.PedidoId = pedidoId;
-            this.PratoId = pratoId;
-            this.Opcoes = opcoes;
-        }
-
-        function AssociarItem() {
-            if (Validacao()) {
-
-                var viewModelPostOpcao = new Array();
-                $(".checkbox:checked").each(function() {
-                    viewModelPostOpcao.push($(this).val());
-                });
-
-                var viewModelPostItem = new ViewModelPostItem(@Model.Id, $("#comboPrato").val());
-
-                $.ajax({
-                    type: "POST",
-                    url: "/Api/V1/Itens",
-                    data: JSON.stringify(viewModelPostItem),
-                    dataType: "json",
-                    contentType: "application/json;charset=utf-8",
-                    success: function (data) {
-                        alert("Sucesso!");
-
-                    },
-                    error: function (jqXhr) {
-                        var e = eval("(" + jqXhr.responseText + ")");
-                        alert(e.Message);
-                    }
-                });
-            }
-        }
-
         $(document).ready(function () {
+            SetPedidoId(@Model.Id);
+
+            Listar();
+
             $("#btnAssociarItem").click(function () {
                 AssociarItem();
             });

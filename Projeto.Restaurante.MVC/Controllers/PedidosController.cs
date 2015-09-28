@@ -99,11 +99,10 @@ namespace Projeto.Restaurante.MVC.Controllers
                 IEnumerable<ViewModelDetailsMesa> listViewModelDetailsMesas;
                 using (_aplicacaoMesa)
                     listViewModelDetailsMesas = Mapper.Map<IEnumerable<Mesa>, IEnumerable<ViewModelDetailsMesa>>(_aplicacaoMesa.GetAll(true));
-
                 IEnumerable<ViewModelDetailsCategoria> listViewModelDetailsCategorias;
                 using (_aplicacaoCategoria)
                 {
-                    listViewModelDetailsCategorias = Mapper.Map<IEnumerable<Categoria>, IEnumerable<ViewModelDetailsCategoria>>(_aplicacaoCategoria.GetAll(true));
+                    listViewModelDetailsCategorias = Mapper.Map<IEnumerable<Categoria>, IEnumerable<ViewModelDetailsCategoria>>(_aplicacaoCategoria.GetAll(true)).ToList();
                     using (_aplicacaoPrato)
                     {
                         foreach (var categoria in listViewModelDetailsCategorias)
@@ -112,7 +111,6 @@ namespace Projeto.Restaurante.MVC.Controllers
                         }
                     }
                 }
-
                 IEnumerable<ViewModelDetailsOpcao> listViewModelDetailsOpcaos;
                 using (_aplicacaoOpcao)
                     listViewModelDetailsOpcaos = Mapper.Map<IEnumerable<Opcao>, IEnumerable<ViewModelDetailsOpcao>>(_aplicacaoOpcao.GetAll(true));

@@ -13,29 +13,27 @@ namespace Projeto.Restaurante.Servicos.WebApi.Controllers.V1
     [RoutePrefix("Api/V1")]
     public class ItensController : ApiController
     {
-        //private readonly IAplicacaoItem _aplicacaoItem;
+        private readonly IAplicacaoItem _aplicacaoItem;
 
-        //public ItensController(IAplicacaoItem aplicacaoItem)
-        //{
-        //    _aplicacaoItem = aplicacaoItem;
-        //}
+        public ItensController(IAplicacaoItem aplicacaoItem)
+        {
+            _aplicacaoItem = aplicacaoItem;
+        }
 
         [HttpGet]
         [Route("Itens/{pedidoid:int}")]
         public HttpResponseMessage Get(int pedidoId)
         {
-            IEnumerable<ViewModelGetItem> viewModelGetItens;
+            IEnumerable<ViewModelGetItem> viewModelGetItens = null;
             try
             {
-                var pedido = new Pedido();
-                var itens = new List<Item>();
-                viewModelGetItens = Mapper.Map<IEnumerable<Item>, IEnumerable<ViewModelGetItem>>(itens);
+                using (_aplicacaoItem)
+                    viewModelGetItens = Mapper.Map<IEnumerable<Item>, IEnumerable<ViewModelGetItem>>(_aplicacaoItem.GetAll(pedidoId, true));
             }
             catch (MyException ex)
             {
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message, ex);
             }
-
             return Request.CreateResponse(HttpStatusCode.OK, viewModelGetItens);
         }
 
@@ -50,8 +48,8 @@ namespace Projeto.Restaurante.Servicos.WebApi.Controllers.V1
             try
             {
                 item = Mapper.Map<ViewModelPostItem, Item>(viewModelPostItem);
-                //using (_aplicacaoItem)
-                //    _aplicacaoItem.Add(item);
+                using (_aplicacaoItem)
+                    _aplicacaoItem.Add(item);
             }
             catch (MyException ex)
             {
