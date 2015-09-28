@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using Projeto.Restaurante.MVC.Models
+<!DOCTYPE html>
 <html>
 <head>
     <title>@ViewBag.Title</title>
@@ -31,6 +32,13 @@
         </div>
         <br />
         <div class="form-horizontal">
+            @{
+                if (ViewBag.Alerta != null)
+                {
+                    Html.RenderPartial("~/Views/Util/AlertInline.cshtml", (Alerta)ViewBag.Alerta);
+                }
+            }
+
             @RenderBody()
         </div>
     </div>

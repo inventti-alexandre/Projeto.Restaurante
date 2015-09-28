@@ -9,6 +9,11 @@ namespace Projeto.Restaurante.Dominio.Entidades
         public virtual IList<Prato> Pratos { get; private set; }
         #endregion
 
+        public override string ToString()
+        {
+            return Nome;
+        }
+
         #region Construtores
         //public Categoria()
         //{

@@ -11,10 +11,15 @@
         public virtual Categoria Categoria { get; private set; }
         #endregion
 
+        public override string ToString()
+        {
+            return Nome + " [" + Preco + "]";
+        }
+
         #region Construtores
         //public Prato()
         //{
-            
+
         //}
 
         //public Prato(string nome, decimal preco, string descricao, bool disponivel, int categoriaId)

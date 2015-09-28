@@ -11,6 +11,11 @@ namespace Projeto.Restaurante.Dominio.Entidades
         public virtual IList<Item> Itens { get; private set; }
         #endregion
 
+        public override string ToString()
+        {
+            return Id.ToString();
+        }
+
         #region Construtores
         //public Pedido()
         //{

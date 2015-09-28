@@ -52,52 +52,47 @@
                 <div class="panel-body">
 
                     <div class="form-group">
-                        <div class="col-md-12">
-                            <input id="btnNovoItem" type="button" value="Novo" class="btn btn-info" />
+                        <label class="control-label col-md-1">
+                            Pratos
+                        </label>
+                        <div class="col-md-11">
+                            <select id="comboPrato" class="form-control">
+                                <option value="0">Selecione</option>
+                                @{
+    foreach (var categoria in Model.Categorias)
+    {
+        <optgroup label="@categoria.Nome">
+            @{
+        foreach (var prato in categoria.Pratos)
+        {
+            <option value="@prato.Id">@prato.Nome R$ [@prato.Preco]</option>
+        }
+            }
+        </optgroup>
+    }
+                                }
+                            </select>
                         </div>
                     </div>
 
-                    <div id="divItem">
-
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.Pratos, new { @class = "control-label col-md-2" })
-                            <div class="col-md-4">
-                                <div>
-                                    @{
-    var pratos = Model.Pratos.Select(x => new SelectListItem
+                    @{
+    foreach (var opcao in Model.Opcoes)
     {
-        Value = x.Id.ToString(),
-        Text = x.Nome + " - " + x.Preco
-        ,
-        Group = new SelectListGroup { Name = x.Categoria.Nome }
-    }).ToList();
-                                    }
-                                    @Html.DropDownList("PratoId", pratos, new { @class = "form-control" })
-                                    @Html.ValidationMessageFor(model => model.MesaId, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
+        <div class="form-group">
+            <label for="@opcao.Id" class="col-md-1">
+                <input value="@opcao.Id" type="checkbox" class="checkbox" />
+            </label>
+            <label class="control-label col-md-11">
+                @Html.DisplayFor(model => opcao.Nome)
+            </label>
+        </div>
+    }
+                    }
 
-                            @Html.LabelFor(model => model.Opcoes, new { @class = "control-label col-md-2" })
-                            <div class="col-md-4">
-                                <div>
-                                    @{
-    var opcoes = Model.Opcoes.Select(x => new SelectListItem { Value = x.Id.ToString(), Text = x.Nome }).ToList();
-                                    }
-                                    @Html.DropDownList("OpcaoId", opcoes, new { @class = "form-control" })
-                                    @Html.ValidationMessageFor(model => model.MesaId, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
+                    <div id="form-group">
+                        <div class="col-md-offset-5 col-md-2">
+                            <input id="btnAssociarItem" type="button" value="Associar Item" class="btn btn-info btn-block" />
                         </div>
-
-                        <div class="form-group">
-                            <div class="col-md-offset-4 col-md-2">
-                                <input id="btnAssociarItem" type="button" value="Associar Item" class="btn btn-info" />
-                            </div>
-                            <div class="col-md-2">
-                                <input id="btnFinalizarItem" type="button" value="Finalizar Item" class="btn btn-info" />
-                            </div>
-                        </div>
-
                     </div>
 
                 </div>
@@ -105,8 +100,8 @@
             </div>
 
             <div class="form-group">
-                <div class="col-md-offset-6 col-md-6">
-                    <input type="submit" value="Alterar" class="btn btn-info" />
+                <div class="col-md-offset-5 col-md-2">
+                    <input type="submit" value="Alterar" class="btn btn-info btn-block" />
                 </div>
             </div>
         </div>
@@ -119,28 +114,62 @@
     </div>
 </div>
 
+@{ Html.RenderPartial("~/Views/Util/Alert.cshtml");}
+
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
     <script type="text/javascript">
+
+        function Validacao() {
+            if ($("#comboPrato option").length === 0 || $("#comboPrato").val() === "0") {
+                alert("Prato - Obrigatório");
+                return false;
+            }
+            return true;
+        }
+
+        function ViewModelPostOpcao(id) {
+            this.Id = id;
+        }
+
+        function ViewModelPostItem(pedidoId, pratoId, opcoes) {
+            this.PedidoId = pedidoId;
+            this.PratoId = pratoId;
+            this.Opcoes = opcoes;
+        }
+
+        function AssociarItem() {
+            if (Validacao()) {
+
+                var viewModelPostOpcao = new Array();
+                $(".checkbox:checked").each(function() {
+                    viewModelPostOpcao.push($(this).val());
+                });
+
+                var viewModelPostItem = new ViewModelPostItem(@Model.Id, $("#comboPrato").val());
+
+                $.ajax({
+                    type: "POST",
+                    url: "/Api/V1/Itens",
+                    data: JSON.stringify(viewModelPostItem),
+                    dataType: "json",
+                    contentType: "application/json;charset=utf-8",
+                    success: function (data) {
+                        alert("Sucesso!");
+
+                    },
+                    error: function (jqXhr) {
+                        var e = eval("(" + jqXhr.responseText + ")");
+                        alert(e.Message);
+                    }
+                });
+            }
+        }
+
         $(document).ready(function () {
-            $("#divItem").hide();
-            $("#btnNovoItem").show();
-
-            $("#btnNovoItem").click(function () {
-                $("#divItem").show();
-                $("#btnNovoItem").hide();
-            });
-
             $("#btnAssociarItem").click(function () {
-                $("#PratoId").attr("disabled", "disabled");
+                AssociarItem();
             });
-
-            $("#btnFinalizarItem").click(function () {
-                $("#divItem").hide();
-                $("#btnNovoItem").show();
-                $("#PratoId").removeAttr("disabled");
-            });
-
         });
     </script>
 }

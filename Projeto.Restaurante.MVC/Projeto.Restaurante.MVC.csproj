@@ -149,9 +149,6 @@
     <Compile Include="ViewModels\Categoria\ViewModelCreateCategoria.cs" />
     <Compile Include="ViewModels\Categoria\ViewModelDetailsCategoria.cs" />
     <Compile Include="ViewModels\Categoria\ViewModelEditCategoria.cs" />
-    <Compile Include="ViewModels\Item\ViewModelCreateItem.cs" />
-    <Compile Include="ViewModels\Item\ViewModelDetailsItem.cs" />
-    <Compile Include="ViewModels\Item\ViewModelEditItem.cs" />
     <Compile Include="ViewModels\Mesa\ViewModelCreateMesa.cs" />
     <Compile Include="ViewModels\Mesa\ViewModelDetailsMesa.cs" />
     <Compile Include="ViewModels\Mesa\ViewModelEditMesa.cs" />

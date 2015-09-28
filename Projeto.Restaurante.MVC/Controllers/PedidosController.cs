@@ -1,8 +1,13 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 using AutoMapper;
 using Projeto.Restaurante.Aplicacao.Interfaces;
 using Projeto.Restaurante.Dominio.Entidades;
+using Projeto.Restaurante.Dominio.Exceptions;
+using Projeto.Restaurante.MVC.Models;
+using Projeto.Restaurante.MVC.Models.Enuns;
+using Projeto.Restaurante.MVC.ViewModels.Categoria;
 using Projeto.Restaurante.MVC.ViewModels.Mesa;
 using Projeto.Restaurante.MVC.ViewModels.Opcao;
 using Projeto.Restaurante.MVC.ViewModels.Pedido;
@@ -14,13 +19,15 @@ namespace Projeto.Restaurante.MVC.Controllers
     {
         private readonly IAplicacaoPedido _aplicacaoPedido;
         private readonly IAplicacaoMesa _aplicacaoMesa;
+        private readonly IAplicacaoCategoria _aplicacaoCategoria;
         private readonly IAplicacaoPrato _aplicacaoPrato;
         private readonly IAplicacaoOpcao _aplicacaoOpcao;
 
-        public PedidosController(IAplicacaoPedido aplicacaoPedido, IAplicacaoMesa aplicacaoMesa, IAplicacaoPrato aplicacaoPrato, IAplicacaoOpcao aplicacaoOpcao)
+        public PedidosController(IAplicacaoPedido aplicacaoPedido, IAplicacaoMesa aplicacaoMesa, IAplicacaoCategoria aplicacaoCategoria, IAplicacaoPrato aplicacaoPrato, IAplicacaoOpcao aplicacaoOpcao)
         {
             _aplicacaoPedido = aplicacaoPedido;
             _aplicacaoMesa = aplicacaoMesa;
+            _aplicacaoCategoria = aplicacaoCategoria;
             _aplicacaoPrato = aplicacaoPrato;
             _aplicacaoOpcao = aplicacaoOpcao;
         }
@@ -28,27 +35,33 @@ namespace Projeto.Restaurante.MVC.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            IEnumerable<ViewModelDetailsPedido> listViewModelDetails;
-            using (_aplicacaoPedido)
-                listViewModelDetails = Mapper.Map<IEnumerable<Pedido>, IEnumerable<ViewModelDetailsPedido>>(_aplicacaoPedido.GetAll());
-
-            using (_aplicacaoMesa)
+            IEnumerable<ViewModelDetailsPedido> listViewModelDetails = null;
+            try
             {
-                foreach (var viewModelDetailsPedido in listViewModelDetails)
-                    viewModelDetailsPedido.Mesa = Mapper.Map<Mesa, ViewModelDetailsMesa>(_aplicacaoMesa.GetById(viewModelDetailsPedido.MesaId));
+                using (_aplicacaoPedido)
+                    listViewModelDetails = Mapper.Map<IEnumerable<Pedido>, IEnumerable<ViewModelDetailsPedido>>(_aplicacaoPedido.GetAll());
+                using (_aplicacaoMesa)
+                {
+                    foreach (var viewModelDetailsPedido in listViewModelDetails)
+                        viewModelDetailsPedido.Mesa = Mapper.Map<Mesa, ViewModelDetailsMesa>(_aplicacaoMesa.GetById(viewModelDetailsPedido.MesaId));
+                }
             }
+            catch (MyException ex) { ViewBag.Alerta = new Alerta(ex.Message, TipoDeAlerta.Aviso); }
             return View(listViewModelDetails);
         }
 
         [HttpGet]
         public ActionResult Create()
         {
-            ViewModelCreatePedido viewModelCreate = new ViewModelCreatePedido();
-            IEnumerable<ViewModelDetailsMesa> listViewModelDetails;
-            using (_aplicacaoMesa)
-                listViewModelDetails = Mapper.Map<IEnumerable<Mesa>, IEnumerable<ViewModelDetailsMesa>>(_aplicacaoMesa.GetAll(true));
-
-            viewModelCreate.Mesas = listViewModelDetails;
+            var viewModelCreate = new ViewModelCreatePedido();
+            try
+            {
+                IEnumerable<ViewModelDetailsMesa> listViewModelDetails;
+                using (_aplicacaoMesa)
+                    listViewModelDetails = Mapper.Map<IEnumerable<Mesa>, IEnumerable<ViewModelDetailsMesa>>(_aplicacaoMesa.GetAll(true));
+                viewModelCreate.Mesas = listViewModelDetails;
+            }
+            catch (MyException ex) { ViewBag.Alerta = new Alerta(ex.Message, TipoDeAlerta.Aviso); }
             return View(viewModelCreate);
         }
 
@@ -56,46 +69,58 @@ namespace Projeto.Restaurante.MVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(ViewModelCreatePedido viewModelCreate)
         {
-            if (!ModelState.IsValid)
+            Pedido pedido = null;
+            try
             {
-                IEnumerable<ViewModelDetailsMesa> listViewModelDetails;
-                using (_aplicacaoMesa)
-                    listViewModelDetails = Mapper.Map<IEnumerable<Mesa>, IEnumerable<ViewModelDetailsMesa>>(_aplicacaoMesa.GetAll(true));
-
-                viewModelCreate.Mesas = listViewModelDetails;
-
-                return View(viewModelCreate);
+                if (!ModelState.IsValid)
+                {
+                    IEnumerable<ViewModelDetailsMesa> listViewModelDetails;
+                    using (_aplicacaoMesa)
+                        listViewModelDetails = Mapper.Map<IEnumerable<Mesa>, IEnumerable<ViewModelDetailsMesa>>(_aplicacaoMesa.GetAll(true));
+                    viewModelCreate.Mesas = listViewModelDetails;
+                    return View(viewModelCreate);
+                }
+                pedido = Mapper.Map<ViewModelCreatePedido, Pedido>(viewModelCreate);
+                using (_aplicacaoPedido)
+                    _aplicacaoPedido.Add(pedido);
             }
-            var pedido = Mapper.Map<ViewModelCreatePedido, Pedido>(viewModelCreate);
-            using (_aplicacaoPedido)
-                _aplicacaoPedido.Add(pedido);
-
-            return Redirect(string.Format("/Pedidos/Edit/{0}", pedido.Id));
+            catch (MyException ex) { ViewBag.Alerta = new Alerta(ex.Message, TipoDeAlerta.Aviso); }
+            return Redirect(string.Format("/Pedidos/Edit/{0}", pedido != null ? pedido.Id : 0));
         }
 
         [HttpGet]
         public ActionResult Edit(int id)
         {
-            ViewModelEditPedido viewModelEdit;
-            using (_aplicacaoPedido)
-                viewModelEdit = Mapper.Map<Pedido, ViewModelEditPedido>(_aplicacaoPedido.GetById(id));
+            ViewModelEditPedido viewModelEdit = null;
+            try
+            {
+                using (_aplicacaoPedido)
+                    viewModelEdit = Mapper.Map<Pedido, ViewModelEditPedido>(_aplicacaoPedido.GetById(id));
+                IEnumerable<ViewModelDetailsMesa> listViewModelDetailsMesas;
+                using (_aplicacaoMesa)
+                    listViewModelDetailsMesas = Mapper.Map<IEnumerable<Mesa>, IEnumerable<ViewModelDetailsMesa>>(_aplicacaoMesa.GetAll(true));
 
-            IEnumerable<ViewModelDetailsMesa> listViewModelDetailsMesas;
-            using (_aplicacaoMesa)
-                listViewModelDetailsMesas = Mapper.Map<IEnumerable<Mesa>, IEnumerable<ViewModelDetailsMesa>>(_aplicacaoMesa.GetAll(true));
+                IEnumerable<ViewModelDetailsCategoria> listViewModelDetailsCategorias;
+                using (_aplicacaoCategoria)
+                {
+                    listViewModelDetailsCategorias = Mapper.Map<IEnumerable<Categoria>, IEnumerable<ViewModelDetailsCategoria>>(_aplicacaoCategoria.GetAll(true));
+                    using (_aplicacaoPrato)
+                    {
+                        foreach (var categoria in listViewModelDetailsCategorias)
+                        {
+                            categoria.Pratos = Mapper.Map<IEnumerable<Prato>, IEnumerable<ViewModelDetailsPrato>>(_aplicacaoPrato.GetAll(categoria.Id, true));
+                        }
+                    }
+                }
 
-            IEnumerable<ViewModelDetailsPrato> listViewModelDetailsPratos;
-            using (_aplicacaoPrato)
-                listViewModelDetailsPratos = Mapper.Map<IEnumerable<Prato>, IEnumerable<ViewModelDetailsPrato>>(_aplicacaoPrato.GetAll());
-
-            IEnumerable<ViewModelDetailsOpcao> listViewModelDetailsOpcaos;
-            using (_aplicacaoOpcao)
-                listViewModelDetailsOpcaos = Mapper.Map<IEnumerable<Opcao>, IEnumerable<ViewModelDetailsOpcao>>(_aplicacaoOpcao.GetAll());
-
-            viewModelEdit.Mesas = listViewModelDetailsMesas;
-            viewModelEdit.Pratos = listViewModelDetailsPratos;
-            viewModelEdit.Opcoes = listViewModelDetailsOpcaos;
-
+                IEnumerable<ViewModelDetailsOpcao> listViewModelDetailsOpcaos;
+                using (_aplicacaoOpcao)
+                    listViewModelDetailsOpcaos = Mapper.Map<IEnumerable<Opcao>, IEnumerable<ViewModelDetailsOpcao>>(_aplicacaoOpcao.GetAll(true));
+                viewModelEdit.Mesas = listViewModelDetailsMesas;
+                viewModelEdit.Categorias = listViewModelDetailsCategorias;
+                viewModelEdit.Opcoes = listViewModelDetailsOpcaos;
+            }
+            catch (MyException ex) { ViewBag.Alerta = new Alerta(ex.Message, TipoDeAlerta.Aviso); }
             return View(viewModelEdit);
         }
 
@@ -103,30 +128,36 @@ namespace Projeto.Restaurante.MVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(ViewModelEditPedido viewModelEdit)
         {
-            if (!ModelState.IsValid)
+            try
             {
-                IEnumerable<ViewModelDetailsMesa> listViewModelDetailsMesas;
-                using (_aplicacaoMesa)
-                    listViewModelDetailsMesas = Mapper.Map<IEnumerable<Mesa>, IEnumerable<ViewModelDetailsMesa>>(_aplicacaoMesa.GetAll(true));
-
-                viewModelEdit.Mesas = listViewModelDetailsMesas;
-
-                return View(viewModelEdit);
+                if (!ModelState.IsValid)
+                {
+                    IEnumerable<ViewModelDetailsMesa> listViewModelDetailsMesas;
+                    using (_aplicacaoMesa)
+                        listViewModelDetailsMesas = Mapper.Map<IEnumerable<Mesa>, IEnumerable<ViewModelDetailsMesa>>(_aplicacaoMesa.GetAll(true));
+                    viewModelEdit.Mesas = listViewModelDetailsMesas;
+                    return View(viewModelEdit);
+                }
+                using (_aplicacaoPedido)
+                    _aplicacaoPedido.Update(Mapper.Map<ViewModelEditPedido, Pedido>(viewModelEdit));
+                return RedirectToAction("Index");
             }
-            using (_aplicacaoPedido)
-                _aplicacaoPedido.Update(Mapper.Map<ViewModelEditPedido, Pedido>(viewModelEdit));
-
-            return RedirectToAction("Index");
+            catch (MyException ex) { ViewBag.Alerta = new Alerta(ex.Message, TipoDeAlerta.Aviso); }
+            return View(viewModelEdit);
         }
 
         [HttpGet]
         public ActionResult Delete(int id)
         {
-            using (_aplicacaoPedido)
+            try
             {
-                var obj = _aplicacaoPedido.GetById(id);
-                _aplicacaoPedido.Remove(obj);
+                using (_aplicacaoPedido)
+                {
+                    var obj = _aplicacaoPedido.GetById(id);
+                    _aplicacaoPedido.Remove(obj);
+                }
             }
+            catch (MyException ex) { ViewBag.Alerta = new Alerta(ex.Message, TipoDeAlerta.Aviso); }
             return RedirectToAction("Index");
         }
 

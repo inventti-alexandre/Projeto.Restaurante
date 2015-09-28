@@ -5,6 +5,8 @@ namespace Projeto.Restaurante.Aplicacao.Interfaces
 {
     public interface IAplicacaoPrato : IAplicacaoBase<Prato>
     {
-        IEnumerable<Prato> Listar(Categoria categoria);
+        IEnumerable<Prato> GetAll(bool ativo);
+        IEnumerable<Prato> GetAll(int categoriaId);
+        IEnumerable<Prato> GetAll(int categoriaId, bool ativo);
     }
 }

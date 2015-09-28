@@ -24,7 +24,7 @@ namespace Projeto.Restaurante.Infraestrutura.Dados.Repositorios
 
         public IEnumerable<Mesa> GetAll(bool ativo)
         {
-            return base.GetAll().Where(x => x.Ativo == ativo).OrderBy(x => x.Nome);
+            return Db.Mesas.Where(x => x.Ativo == ativo).ToList();
         }
     }
 }

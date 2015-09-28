@@ -15,9 +15,19 @@ namespace Projeto.Restaurante.Aplicacao
             _servicoItem = servicoItem;
         }
 
-        public IEnumerable<Item> Listar(Pedido pedido)
+        public IEnumerable<Item> GetAll(bool ativo)
         {
-            return _servicoItem.Listar(pedido);
+            return _servicoItem.GetAll(ativo);
+        }
+
+        public IEnumerable<Item> GetAll(int pedidoId)
+        {
+            return _servicoItem.GetAll(pedidoId);
+        }
+
+        public IEnumerable<Item> GetAll(int pedidoId, bool ativo)
+        {
+            return _servicoItem.GetAll(pedidoId, ativo);
         }
     }
 }

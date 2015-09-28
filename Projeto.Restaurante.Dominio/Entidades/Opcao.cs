@@ -6,6 +6,11 @@
         public string Nome { get; private set; }
         #endregion
 
+        public override string ToString()
+        {
+            return Nome;
+        }
+
         #region Construtores
         //public Opcao()
         //{

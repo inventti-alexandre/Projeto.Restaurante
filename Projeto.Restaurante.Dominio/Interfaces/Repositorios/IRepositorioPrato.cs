@@ -5,8 +5,11 @@ namespace Projeto.Restaurante.Dominio.Interfaces.Repositorios
 {
     public interface IRepositorioPrato : IRepositorioBase<Prato>
     {
-        IEnumerable<Prato> Listar(Categoria categoria);
+
         bool ExisteNomenclaturaInformada(string nome);
         bool ExisteNomenclaturaInformada(int id, string nome);
+        IEnumerable<Prato> GetAll(bool ativo);
+        IEnumerable<Prato> GetAll(int categoriaId);
+        IEnumerable<Prato> GetAll(int categoriaId, bool ativo);
     }
 }

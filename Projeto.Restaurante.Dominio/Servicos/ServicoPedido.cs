@@ -17,25 +17,28 @@ namespace Projeto.Restaurante.Dominio.Servicos
             _repositorioPedido = repositorioPedido;
         }
 
-        public Pedido PedidoCorrente(Mesa mesa)
+        public Pedido PedidoCorrente(int mesaId)
         {
-            return _repositorioPedido.PedidoCorrente(mesa);
+            return _repositorioPedido.PedidoCorrente(mesaId);
         }
-        
+
         /// <exception cref="MyException">Já consta um pedido para Mesa Informada!</exception>
         public override void Add(Pedido obj)
         {
-            //obj.Mesa.ValidarId();
-
-            //if (_repositorioPedido.ExistePedido(obj.Mesa))
-            //    throw new MyException("Já consta um pedido para Mesa Informada!");
+            if (_repositorioPedido.ExistePedido(obj.MesaId))
+                throw new MyException("Já consta um pedido para Mesa Informada!");
 
             base.Add(obj);
         }
 
         public override IEnumerable<Pedido> GetAll()
         {
-            return base.GetAll().OrderBy(x => x.Id);
+            return base.GetAll().OrderByDescending(x => x.Id);
+        }
+
+        public IEnumerable<Pedido> GetAll(bool ativo)
+        {
+            return _repositorioPedido.GetAll(ativo).OrderByDescending(x => x.Id);
         }
     }
 }

@@ -5,6 +5,8 @@ namespace Projeto.Restaurante.Dominio.Interfaces.Servicos
 {
     public interface IServicoItem : IServicoBase<Item>
     {
-        IEnumerable<Item> Listar(Pedido pedido);
+        IEnumerable<Item> GetAll(bool ativo);
+        IEnumerable<Item> GetAll(int pedidoId);
+        IEnumerable<Item> GetAll(int pedidoId, bool ativo);
     }
 }

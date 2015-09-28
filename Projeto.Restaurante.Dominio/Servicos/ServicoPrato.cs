@@ -17,11 +17,6 @@ namespace Projeto.Restaurante.Dominio.Servicos
             _repositorioPrato = repositorioPrato;
         }
 
-        public IEnumerable<Prato> Listar(Categoria categoria)
-        {
-            return _repositorioPrato.Listar(categoria).OrderBy(x => x.Nome);
-        }
-        
         /// <exception cref="MyException">Nomenclatura já Cadastrada!</exception>
         public override void Add(Prato obj)
         {
@@ -36,6 +31,21 @@ namespace Projeto.Restaurante.Dominio.Servicos
             return base.GetAll().OrderBy(x => x.Nome);
         }
 
+        public IEnumerable<Prato> GetAll(bool ativo)
+        {
+            return _repositorioPrato.GetAll(ativo).OrderBy(x => x.Nome);
+        }
+
+        public IEnumerable<Prato> GetAll(int categoriaId)
+        {
+            return _repositorioPrato.GetAll(categoriaId).OrderBy(x => x.Nome);
+        }
+
+        public IEnumerable<Prato> GetAll(int categoriaId, bool ativo)
+        {
+            return _repositorioPrato.GetAll(categoriaId, ativo).OrderBy(x => x.Nome);
+        }
+        
         /// <exception cref="MyException">Nomenclatura já Cadastrada!</exception>
         public override void Update(Prato obj)
         {

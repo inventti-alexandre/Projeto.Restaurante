@@ -24,7 +24,7 @@ namespace Projeto.Restaurante.Infraestrutura.Dados.Repositorios
         
         public IEnumerable<Categoria> GetAll(bool ativo)
         {
-            return base.GetAll().Where(x => x.Ativo == ativo).OrderBy(x => x.Nome);
+            return Db.Categorias.Where(x => x.Ativo == ativo).ToList();
         }
     }
 }

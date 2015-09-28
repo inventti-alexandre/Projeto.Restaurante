@@ -15,9 +15,19 @@ namespace Projeto.Restaurante.Aplicacao
             _servicoPrato = servicoPrato;
         }
 
-        public IEnumerable<Prato> Listar(Categoria categoria)
+        public IEnumerable<Prato> GetAll(bool ativo)
         {
-            return _servicoPrato.Listar(categoria);
+            return _servicoPrato.GetAll(ativo);
+        }
+
+        public IEnumerable<Prato> GetAll(int categoriaId)
+        {
+            return _servicoPrato.GetAll(categoriaId);
+        }
+
+        public IEnumerable<Prato> GetAll(int categoriaId, bool ativo)
+        {
+            return _servicoPrato.GetAll(categoriaId, ativo);
         }
     }
 }

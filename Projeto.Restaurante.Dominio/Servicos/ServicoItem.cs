@@ -15,15 +15,24 @@ namespace Projeto.Restaurante.Dominio.Servicos
         {
             _repositorioItem = repositorioItem;
         }
-
-        public IEnumerable<Item> Listar(Pedido pedido)
-        {
-            return _repositorioItem.Listar(pedido).OrderBy(x => x.Prato.Nome);
-        }
-
+        
         public override IEnumerable<Item> GetAll()
         {
             return base.GetAll().OrderBy(x => x.Prato.Nome);
         }
+        public IEnumerable<Item> GetAll(bool ativo)
+        {
+            return _repositorioItem.GetAll(ativo).OrderBy(x => x.Prato.Nome);
+        }
+
+        public IEnumerable<Item> GetAll(int pedidoId)
+        {
+            return _repositorioItem.GetAll(pedidoId).OrderBy(x => x.Prato.Nome);
+        }
+        public IEnumerable<Item> GetAll(int pedidoId, bool ativo)
+        {
+            return _repositorioItem.GetAll(pedidoId, ativo).OrderBy(x => x.Prato.Nome);
+        }
+
     }
 }

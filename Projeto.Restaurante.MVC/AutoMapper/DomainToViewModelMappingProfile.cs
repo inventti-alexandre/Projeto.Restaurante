@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using Projeto.Restaurante.Dominio.Entidades;
 using Projeto.Restaurante.MVC.ViewModels.Categoria;
-using Projeto.Restaurante.MVC.ViewModels.Item;
 using Projeto.Restaurante.MVC.ViewModels.Mesa;
 using Projeto.Restaurante.MVC.ViewModels.Opcao;
 using Projeto.Restaurante.MVC.ViewModels.Pedido;
@@ -16,10 +15,6 @@ namespace Projeto.Restaurante.MVC.AutoMapper
             Mapper.CreateMap<ViewModelCreateCategoria, Categoria>();
             Mapper.CreateMap<ViewModelDetailsCategoria, Categoria>();
             Mapper.CreateMap<ViewModelEditCategoria, Categoria>();
-
-            Mapper.CreateMap<ViewModelCreateItem, Item>();
-            Mapper.CreateMap<ViewModelDetailsItem, Item>();
-            Mapper.CreateMap<ViewModelEditItem, Item>();
 
             Mapper.CreateMap<ViewModelCreateMesa, Mesa>();
             Mapper.CreateMap<ViewModelDetailsMesa, Mesa>();

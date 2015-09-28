@@ -3,6 +3,9 @@ using System.Web.Mvc;
 using AutoMapper;
 using Projeto.Restaurante.Aplicacao.Interfaces;
 using Projeto.Restaurante.Dominio.Entidades;
+using Projeto.Restaurante.Dominio.Exceptions;
+using Projeto.Restaurante.MVC.Models;
+using Projeto.Restaurante.MVC.Models.Enuns;
 using Projeto.Restaurante.MVC.ViewModels.Categoria;
 using Projeto.Restaurante.MVC.ViewModels.Prato;
 
@@ -22,46 +25,50 @@ namespace Projeto.Restaurante.MVC.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            IEnumerable<ViewModelDetailsPrato> listViewModelDetails;
-            using (_aplicacaoPrato)
+            IEnumerable<ViewModelDetailsPrato> listViewModelDetails = null;
+            try
             {
-                listViewModelDetails = Mapper.Map<IEnumerable<Prato>, IEnumerable<ViewModelDetailsPrato>>(_aplicacaoPrato.GetAll());
-            }
-            using (_aplicacaoCategoria)
-            {
-                foreach (var viewModelDetailsPrato in listViewModelDetails)
+                using (_aplicacaoPrato)
+                    listViewModelDetails = Mapper.Map<IEnumerable<Prato>, IEnumerable<ViewModelDetailsPrato>>(_aplicacaoPrato.GetAll());
+                using (_aplicacaoCategoria)
                 {
-                    viewModelDetailsPrato.Categoria = Mapper.Map<Categoria, ViewModelDetailsCategoria>(_aplicacaoCategoria.GetById(viewModelDetailsPrato.CategoriaId));
+                    foreach (var viewModelDetailsPrato in listViewModelDetails)
+                    {
+                        viewModelDetailsPrato.Categoria = Mapper.Map<Categoria, ViewModelDetailsCategoria>(_aplicacaoCategoria.GetById(viewModelDetailsPrato.CategoriaId));
+                    }
                 }
             }
+            catch (MyException ex) { ViewBag.Alerta = new Alerta(ex.Message, TipoDeAlerta.Aviso); }
             return View(listViewModelDetails);
         }
 
         [HttpGet]
         public ActionResult Details(int id)
         {
-            ViewModelDetailsPrato viewModelDetails;
-            using (_aplicacaoPrato)
+            ViewModelDetailsPrato viewModelDetails = null;
+            try
             {
-                viewModelDetails = Mapper.Map<Prato, ViewModelDetailsPrato>(_aplicacaoPrato.GetById(id));
+                using (_aplicacaoPrato)
+                    viewModelDetails = Mapper.Map<Prato, ViewModelDetailsPrato>(_aplicacaoPrato.GetById(id));
+                using (_aplicacaoCategoria)
+                    viewModelDetails.Categoria = Mapper.Map<Categoria, ViewModelDetailsCategoria>(_aplicacaoCategoria.GetById(viewModelDetails.CategoriaId));
             }
-            using (_aplicacaoCategoria)
-            {
-                viewModelDetails.Categoria = Mapper.Map<Categoria, ViewModelDetailsCategoria>(_aplicacaoCategoria.GetById(viewModelDetails.CategoriaId));
-            }
+            catch (MyException ex) { ViewBag.Alerta = new Alerta(ex.Message, TipoDeAlerta.Aviso); }
             return View(viewModelDetails);
         }
 
         [HttpGet]
         public ActionResult Create()
         {
-            ViewModelCreatePrato viewModelCreate = new ViewModelCreatePrato();
-            IEnumerable<ViewModelDetailsCategoria> listViewModelDetails;
-            using (_aplicacaoCategoria)
+            var viewModelCreate = new ViewModelCreatePrato();
+            try
             {
-                listViewModelDetails = Mapper.Map<IEnumerable<Categoria>, IEnumerable<ViewModelDetailsCategoria>>(_aplicacaoCategoria.GetAll(true));
+                IEnumerable<ViewModelDetailsCategoria> listViewModelDetails;
+                using (_aplicacaoCategoria)
+                    listViewModelDetails = Mapper.Map<IEnumerable<Categoria>, IEnumerable<ViewModelDetailsCategoria>>(_aplicacaoCategoria.GetAll(true));
+                viewModelCreate.Categorias = listViewModelDetails;
             }
-            viewModelCreate.Categorias = listViewModelDetails;
+            catch (MyException ex) { ViewBag.Alerta = new Alerta(ex.Message, TipoDeAlerta.Aviso); }
             return View(viewModelCreate);
         }
 
@@ -69,38 +76,39 @@ namespace Projeto.Restaurante.MVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(ViewModelCreatePrato viewModelCreate)
         {
-            if (!ModelState.IsValid)
+            try
             {
-                IEnumerable<ViewModelDetailsCategoria> listViewModelDetails;
-                using (_aplicacaoCategoria)
+                if (!ModelState.IsValid)
                 {
-                    listViewModelDetails = Mapper.Map<IEnumerable<Categoria>, IEnumerable<ViewModelDetailsCategoria>>(_aplicacaoCategoria.GetAll(true));
+                    IEnumerable<ViewModelDetailsCategoria> listViewModelDetails;
+                    using (_aplicacaoCategoria)
+                        listViewModelDetails = Mapper.Map<IEnumerable<Categoria>, IEnumerable<ViewModelDetailsCategoria>>(_aplicacaoCategoria.GetAll(true));
+                    viewModelCreate.Categorias = listViewModelDetails;
+                    return View(viewModelCreate);
                 }
-                viewModelCreate.Categorias = listViewModelDetails;
+                using (_aplicacaoPrato)
+                    _aplicacaoPrato.Add(Mapper.Map<ViewModelCreatePrato, Prato>(viewModelCreate));
+                return RedirectToAction("Index");
 
-                return View(viewModelCreate);
             }
-            using (_aplicacaoPrato)
-            {
-                _aplicacaoPrato.Add(Mapper.Map<ViewModelCreatePrato, Prato>(viewModelCreate));
-            }
-            return RedirectToAction("Index");
+            catch (MyException ex) { ViewBag.Alerta = new Alerta(ex.Message, TipoDeAlerta.Aviso); }
+            return View(viewModelCreate);
         }
 
         [HttpGet]
         public ActionResult Edit(int id)
         {
-            ViewModelEditPrato viewModelEdit;
-            IEnumerable<ViewModelDetailsCategoria> listViewModelDetails;
-            using (_aplicacaoPrato)
+            ViewModelEditPrato viewModelEdit = null;
+            try
             {
-                viewModelEdit = Mapper.Map<Prato, ViewModelEditPrato>(_aplicacaoPrato.GetById(id));
+                using (_aplicacaoPrato)
+                    viewModelEdit = Mapper.Map<Prato, ViewModelEditPrato>(_aplicacaoPrato.GetById(id));
+                IEnumerable<ViewModelDetailsCategoria> listViewModelDetails;
+                using (_aplicacaoCategoria)
+                    listViewModelDetails = Mapper.Map<IEnumerable<Categoria>, IEnumerable<ViewModelDetailsCategoria>>(_aplicacaoCategoria.GetAll(true));
+                viewModelEdit.Categorias = listViewModelDetails;
             }
-            using (_aplicacaoCategoria)
-            {
-                listViewModelDetails = Mapper.Map<IEnumerable<Categoria>, IEnumerable<ViewModelDetailsCategoria>>(_aplicacaoCategoria.GetAll(true));
-            }
-            viewModelEdit.Categorias = listViewModelDetails;
+            catch (MyException ex) { ViewBag.Alerta = new Alerta(ex.Message, TipoDeAlerta.Aviso); }
             return View(viewModelEdit);
         }
 
@@ -108,32 +116,36 @@ namespace Projeto.Restaurante.MVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(ViewModelEditPrato viewModelEdit)
         {
-            if (!ModelState.IsValid)
+            try
             {
-                IEnumerable<ViewModelDetailsCategoria> listViewModelDetails;
-                using (_aplicacaoCategoria)
+                if (!ModelState.IsValid)
                 {
-                    listViewModelDetails = Mapper.Map<IEnumerable<Categoria>, IEnumerable<ViewModelDetailsCategoria>>(_aplicacaoCategoria.GetAll(true));
+                    IEnumerable<ViewModelDetailsCategoria> listViewModelDetails;
+                    using (_aplicacaoCategoria)
+                        listViewModelDetails = Mapper.Map<IEnumerable<Categoria>, IEnumerable<ViewModelDetailsCategoria>>(_aplicacaoCategoria.GetAll(true));
+                    viewModelEdit.Categorias = listViewModelDetails;
+                    return View(viewModelEdit);
                 }
-                viewModelEdit.Categorias = listViewModelDetails;
-
-                return View(viewModelEdit);
+                using (_aplicacaoPrato)
+                    _aplicacaoPrato.Update(Mapper.Map<ViewModelEditPrato, Prato>(viewModelEdit));
+                return RedirectToAction("Index");
             }
-            using (_aplicacaoPrato)
-            {
-                _aplicacaoPrato.Update(Mapper.Map<ViewModelEditPrato, Prato>(viewModelEdit));
-            }
-            return RedirectToAction("Index");
+            catch (MyException ex) { ViewBag.Alerta = new Alerta(ex.Message, TipoDeAlerta.Aviso); }
+            return View(viewModelEdit);
         }
 
         [HttpGet]
         public ActionResult Delete(int id)
         {
-            using (_aplicacaoPrato)
+            try
             {
-                var obj = _aplicacaoPrato.GetById(id);
-                _aplicacaoPrato.Remove(obj);
+                using (_aplicacaoPrato)
+                {
+                    var obj = _aplicacaoPrato.GetById(id);
+                    _aplicacaoPrato.Remove(obj);
+                }
             }
+            catch (MyException ex) { ViewBag.Alerta = new Alerta(ex.Message, TipoDeAlerta.Aviso); }
             return RedirectToAction("Index");
         }
     }

@@ -3,6 +3,9 @@ using System.Web.Mvc;
 using AutoMapper;
 using Projeto.Restaurante.Aplicacao.Interfaces;
 using Projeto.Restaurante.Dominio.Entidades;
+using Projeto.Restaurante.Dominio.Exceptions;
+using Projeto.Restaurante.MVC.Models;
+using Projeto.Restaurante.MVC.Models.Enuns;
 using Projeto.Restaurante.MVC.ViewModels.Opcao;
 
 namespace Projeto.Restaurante.MVC.Controllers
@@ -19,22 +22,26 @@ namespace Projeto.Restaurante.MVC.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            IEnumerable<ViewModelDetailsOpcao> listViewModelDetails;
-            using (_aplicacao)
+            IEnumerable<ViewModelDetailsOpcao> listViewModelDetails = null;
+            try
             {
-                listViewModelDetails = Mapper.Map<IEnumerable<Opcao>, IEnumerable<ViewModelDetailsOpcao>>(_aplicacao.GetAll());
+                using (_aplicacao)
+                    listViewModelDetails = Mapper.Map<IEnumerable<Opcao>, IEnumerable<ViewModelDetailsOpcao>>(_aplicacao.GetAll());
             }
+            catch (MyException ex) { ViewBag.Alerta = new Alerta(ex.Message, TipoDeAlerta.Aviso); }
             return View(listViewModelDetails);
         }
 
         [HttpGet]
         public ActionResult Details(int id)
         {
-            ViewModelDetailsOpcao viewModelDetails;
-            using (_aplicacao)
+            ViewModelDetailsOpcao viewModelDetails = null;
+            try
             {
-                viewModelDetails = Mapper.Map<Opcao, ViewModelDetailsOpcao>(_aplicacao.GetById(id));
+                using (_aplicacao)
+                    viewModelDetails = Mapper.Map<Opcao, ViewModelDetailsOpcao>(_aplicacao.GetById(id));
             }
+            catch (MyException ex) { ViewBag.Alerta = new Alerta(ex.Message, TipoDeAlerta.Aviso); }
             return View(viewModelDetails);
         }
 
@@ -50,21 +57,26 @@ namespace Projeto.Restaurante.MVC.Controllers
         {
             if (!ModelState.IsValid)
                 return View(viewModelCreate);
-            using (_aplicacao)
+            try
             {
-                _aplicacao.Add(Mapper.Map<ViewModelCreateOpcao, Opcao>(viewModelCreate));
+                using (_aplicacao)
+                    _aplicacao.Add(Mapper.Map<ViewModelCreateOpcao, Opcao>(viewModelCreate));
+                return RedirectToAction("Index");
             }
-            return RedirectToAction("Index");
+            catch (MyException ex) { ViewBag.Alerta = new Alerta(ex.Message, TipoDeAlerta.Aviso); }
+            return View(viewModelCreate);
         }
 
         [HttpGet]
         public ActionResult Edit(int id)
         {
-            ViewModelEditOpcao viewModelEdit;
-            using (_aplicacao)
+            ViewModelEditOpcao viewModelEdit = null;
+            try
             {
-                viewModelEdit = Mapper.Map<Opcao, ViewModelEditOpcao>(_aplicacao.GetById(id));
+                using (_aplicacao)
+                    viewModelEdit = Mapper.Map<Opcao, ViewModelEditOpcao>(_aplicacao.GetById(id));
             }
+            catch (MyException ex) { ViewBag.Alerta = new Alerta(ex.Message, TipoDeAlerta.Aviso); }
             return View(viewModelEdit);
         }
 
@@ -74,21 +86,28 @@ namespace Projeto.Restaurante.MVC.Controllers
         {
             if (!ModelState.IsValid)
                 return View(viewModelEdit);
-            using (_aplicacao)
+            try
             {
-                _aplicacao.Update(Mapper.Map<ViewModelEditOpcao, Opcao>(viewModelEdit));
+                using (_aplicacao)
+                    _aplicacao.Update(Mapper.Map<ViewModelEditOpcao, Opcao>(viewModelEdit));
+                return RedirectToAction("Index");
             }
-            return RedirectToAction("Index");
+            catch (MyException ex) { ViewBag.Alerta = new Alerta(ex.Message, TipoDeAlerta.Aviso); }
+            return View(viewModelEdit);
         }
 
         [HttpGet]
         public ActionResult Delete(int id)
         {
-            using (_aplicacao)
+            try
             {
-                var obj = _aplicacao.GetById(id);
-                _aplicacao.Remove(obj);
+                using (_aplicacao)
+                {
+                    var obj = _aplicacao.GetById(id);
+                    _aplicacao.Remove(obj);
+                }
             }
+            catch (MyException ex) { ViewBag.Alerta = new Alerta(ex.Message, TipoDeAlerta.Aviso); }
             return RedirectToAction("Index");
         }
     }

@@ -1,4 +1,5 @@
-﻿using Projeto.Restaurante.Aplicacao.Interfaces;
+﻿using System.Collections.Generic;
+using Projeto.Restaurante.Aplicacao.Interfaces;
 using Projeto.Restaurante.Dominio.Entidades;
 using Projeto.Restaurante.Dominio.Interfaces.Servicos;
 
@@ -14,9 +15,14 @@ namespace Projeto.Restaurante.Aplicacao
             _servicoPedido = servicoPedido;
         }
 
-        public Pedido PedidoCorrente(Mesa mesa)
+        public Pedido PedidoCorrente(int mesaId)
         {
-            return _servicoPedido.PedidoCorrente(mesa);
+            return _servicoPedido.PedidoCorrente(mesaId);
+        }
+
+        public IEnumerable<Pedido> GetAll(bool ativo)
+        {
+            return _servicoPedido.GetAll(ativo);
         }
     }
 }

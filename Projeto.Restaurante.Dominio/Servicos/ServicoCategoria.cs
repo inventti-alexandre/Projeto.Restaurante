@@ -33,7 +33,7 @@ namespace Projeto.Restaurante.Dominio.Servicos
 
         public IEnumerable<Categoria> GetAll(bool ativo)
         {
-            return _repositorioCategoria.GetAll(ativo);
+            return _repositorioCategoria.GetAll(ativo).OrderBy(x => x.Nome);
         }
 
         /// <exception cref="MyException">Nomenclatura já Cadastrada!</exception>

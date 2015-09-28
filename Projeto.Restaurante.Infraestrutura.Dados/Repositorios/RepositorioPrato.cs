@@ -8,13 +8,6 @@ namespace Projeto.Restaurante.Infraestrutura.Dados.Repositorios
 {
     public class RepositorioPrato : RepositorioBase<Prato>, IRepositorioPrato
     {
-        #region Listar
-        public IEnumerable<Prato> Listar(Categoria categoria)
-        {
-            return Db.Pratos.Where(x => x.CategoriaId == categoria.Id).ToList();
-        }
-        #endregion
-
         #region Existe Nomenclatura
         public bool ExisteNomenclaturaInformada(string nome)
         {
@@ -26,6 +19,23 @@ namespace Projeto.Restaurante.Infraestrutura.Dados.Repositorios
         {
             var resultado = Convert.ToBoolean(Db.Pratos.Count(x => x.Nome == nome && x.Id != id));
             return resultado;
+        }
+        #endregion
+
+        #region GetAll
+        public IEnumerable<Prato> GetAll(bool ativo)
+        {
+            return Db.Pratos.Where(x => x.Ativo == ativo).ToList();
+        }
+
+        public IEnumerable<Prato> GetAll(int categoriaId)
+        {
+            return Db.Pratos.Where(x => x.CategoriaId == categoriaId).ToList();
+        }
+
+        public IEnumerable<Prato> GetAll(int categoriaId, bool ativo)
+        {
+            return Db.Pratos.Where(x => x.CategoriaId == categoriaId && x.Ativo == ativo).ToList();
         }
         #endregion
     }

@@ -1,25 +1,4 @@
-﻿@using Projeto.Restaurante.MVC.Models.Enuns
-@model Projeto.Restaurante.MVC.Models.Alerta
-
-@{
-    var classAuxiliar = "";
-    switch (@Model.TipoDeAlerta)
-    {
-        case TipoDeAlerta.Sucesso:
-            classAuxiliar = "bg-success";
-            break;
-        case TipoDeAlerta.Informação:
-            classAuxiliar = "bg-info";
-            break;
-        case TipoDeAlerta.Aviso:
-            classAuxiliar = "bg-warning";
-            break;
-        case TipoDeAlerta.Perigo:
-            classAuxiliar = "bg-danger";
-            break;
-    }
-}
-<!-- Modal -->
+﻿<!-- Modal -->
 <div class="modal fade" id="modalAlerta" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog" style="min-width: 300px; width: 30%; max-width: 500px!important;">
         <div class="modal-content">
@@ -27,7 +6,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <h4 class="modal-title" id="myModalLabel" style="text-align: center">Atenção</h4>
             </div>
-            <div class="modal-body @classAuxiliar" style="text-align: center">
+            <div class="modal-body" style="text-align: center">
                 <p id="txtAlerta"></p>
             </div>
             <div class="modal-footer" style="text-align: center">
@@ -45,8 +24,4 @@
         $("#txtAlerta").text(texto);
         $('#modalAlerta').modal('show');
     };
-
-    $(document).ready(function () {
-        alert("@Html.Raw(Model.Mensagem)");
-    });
 </script>

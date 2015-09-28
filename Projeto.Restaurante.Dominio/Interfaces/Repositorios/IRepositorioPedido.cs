@@ -1,10 +1,12 @@
-﻿using Projeto.Restaurante.Dominio.Entidades;
+﻿using System.Collections.Generic;
+using Projeto.Restaurante.Dominio.Entidades;
 
 namespace Projeto.Restaurante.Dominio.Interfaces.Repositorios
 {
     public interface IRepositorioPedido : IRepositorioBase<Pedido>
     {
-        Pedido PedidoCorrente(Mesa mesa);
-        bool ExistePedido(Mesa mesa);
+        Pedido PedidoCorrente(int mesaId);
+        bool ExistePedido(int mesaId);
+        IEnumerable<Pedido> GetAll(bool ativo);
     }
 }
