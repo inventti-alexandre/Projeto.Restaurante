@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using Projeto.Restaurante.Servicos.WebApi.ViewModels.Opcao;
+using Projeto.Restaurante.WebApi.ViewModels.Opcao;
 
-namespace Projeto.Restaurante.Servicos.WebApi.ViewModels.Item
+namespace Projeto.Restaurante.WebApi.ViewModels.Item
 {
     public class ViewModelPostItem
     {

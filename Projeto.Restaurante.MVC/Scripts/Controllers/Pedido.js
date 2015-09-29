@@ -21,10 +21,11 @@ function AssociarItem() {
         });
 
         var viewModelPostItem = new ViewModelPostItem(pedidoId, $("#comboPrato").val());
+        //Opcoes
 
         $.ajax({
             type: "POST",
-            url: "/Api/V1/Itens",
+            url: "/Projeto.Restaurante.WebApi/Api/V1/ServicoItens/" + pedidoId,
             data: JSON.stringify(viewModelPostItem),
             dataType: "json",
             contentType: "application/json;charset=utf-8",

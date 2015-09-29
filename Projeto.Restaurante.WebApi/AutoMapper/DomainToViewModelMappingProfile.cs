@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 using Projeto.Restaurante.Dominio.Entidades;
-using Projeto.Restaurante.Servicos.WebApi.ViewModels.Item;
+using Projeto.Restaurante.WebApi.ViewModels.Item;
 
-namespace Projeto.Restaurante.Servicos.WebApi.AutoMapper
+namespace Projeto.Restaurante.WebApi.AutoMapper
 {
     public class DomainToViewModelMappingProfile : Profile
     {

@@ -103,6 +103,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Apresentacao\" />
     <Folder Include="Dominio\" />
   </ItemGroup>
   <Choose>

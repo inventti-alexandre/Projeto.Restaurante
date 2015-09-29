@@ -6,22 +6,22 @@ using AutoMapper;
 using Projeto.Restaurante.Aplicacao.Interfaces;
 using Projeto.Restaurante.Dominio.Entidades;
 using Projeto.Restaurante.Dominio.Exceptions;
-using Projeto.Restaurante.Servicos.WebApi.ViewModels.Item;
+using Projeto.Restaurante.WebApi.ViewModels.Item;
 
-namespace Projeto.Restaurante.Servicos.WebApi.Controllers.V1
+namespace Projeto.Restaurante.WebApi.Controllers.V1
 {
     [RoutePrefix("Api/V1")]
-    public class ItensController : ApiController
+    public class ServicoItensController : ApiController
     {
         private readonly IAplicacaoItem _aplicacaoItem;
 
-        public ItensController(IAplicacaoItem aplicacaoItem)
+        public ServicoItensController(IAplicacaoItem aplicacaoItem)
         {
             _aplicacaoItem = aplicacaoItem;
         }
 
         [HttpGet]
-        [Route("Itens/{pedidoid:int}")]
+        [Route("ServicoItens/{pedidoId:int}")]
         public HttpResponseMessage Get(int pedidoId)
         {
             IEnumerable<ViewModelGetItem> viewModelGetItens = null;
@@ -38,7 +38,7 @@ namespace Projeto.Restaurante.Servicos.WebApi.Controllers.V1
         }
 
         [HttpPost]
-        [Route("Itens")]
+        [Route("ServicoItens")]
         public HttpResponseMessage Post(ViewModelPostItem viewModelPostItem)
         {
             if (!ModelState.IsValid)
@@ -58,6 +58,20 @@ namespace Projeto.Restaurante.Servicos.WebApi.Controllers.V1
 
             var viewModelGetItem = Mapper.Map<Item, ViewModelGetItem>(item);
             return Request.CreateResponse(HttpStatusCode.Created, viewModelGetItem);
+        }
+
+        [HttpPut]
+        [Route("ServicoItens")]
+        public HttpResponseMessage Put(int id, [FromBody]string value)
+        {
+            return Request.CreateResponse(HttpStatusCode.OK);
+        }
+
+        [HttpDelete]
+        [Route("ServicoItens")]
+        public HttpResponseMessage Delete(int id)
+        {
+            return Request.CreateResponse(HttpStatusCode.OK);
         }
     }
 }

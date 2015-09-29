@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Projeto.Restaurante.Servicos.WebApi.ViewModels.Prato
+namespace Projeto.Restaurante.WebApi.ViewModels.Prato
 {
     public class ViewModelDetailsPrato
     {

@@ -2,7 +2,9 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 
-namespace Projeto.Restaurante.Servicos.WebApi
+//using System.Web.Http.Cors;
+
+namespace Projeto.Restaurante.WebApi
 {
     public static class WebApiConfig
     {
@@ -17,6 +19,7 @@ namespace Projeto.Restaurante.Servicos.WebApi
             config.Formatters.Remove(config.Formatters.XmlFormatter);
             settings.Formatting = Formatting.Indented;
             settings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+            //config.EnableCors(new EnableCorsAttribute("*", "*", "*"));
 
             // Web API routes
             config.MapHttpAttributeRoutes();

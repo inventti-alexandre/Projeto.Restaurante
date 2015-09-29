@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Projeto.Restaurante.Servicos.WebApi.ViewModels.Opcao
+namespace Projeto.Restaurante.WebApi.ViewModels.Opcao
 {
     public class ViewModelPostOpcao
     {

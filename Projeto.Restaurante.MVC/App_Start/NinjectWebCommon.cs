@@ -9,13 +9,13 @@ using Projeto.Restaurante.Dominio.Interfaces.Repositorios;
 using Projeto.Restaurante.Dominio.Interfaces.Servicos;
 using Projeto.Restaurante.Dominio.Servicos;
 using Projeto.Restaurante.Infraestrutura.Dados.Repositorios;
-using Projeto.Restaurante.MVC.App_Start;
+using Projeto.Restaurante.MVC;
 using WebActivatorEx;
 
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(NinjectWebCommon), "Start")]
 [assembly: ApplicationShutdownMethod(typeof(NinjectWebCommon), "Stop")]
 
-namespace Projeto.Restaurante.MVC.App_Start
+namespace Projeto.Restaurante.MVC
 {
     public static class NinjectWebCommon 
     {
