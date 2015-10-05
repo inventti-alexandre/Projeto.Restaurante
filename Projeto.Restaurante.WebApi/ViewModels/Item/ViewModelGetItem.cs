@@ -8,7 +8,7 @@ namespace Projeto.Restaurante.WebApi.ViewModels.Item
     public class ViewModelGetItem
     {
         [Required(ErrorMessage = "Obrigatório!", AllowEmptyStrings = false)]
-        public ViewModelDetailsPrato Prato { get; set; }
+        public ViewModelGetPrato Prato { get; set; }
 
         [Required(ErrorMessage = "Obrigatório!", AllowEmptyStrings = false)]
         public virtual IEnumerable<ViewModelGetOpcao> Opcoes { get; set; }

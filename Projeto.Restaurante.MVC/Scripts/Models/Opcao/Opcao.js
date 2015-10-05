@@ -1,3 +1,3 @@
-﻿function ViewModelPostOpcao(id) {
+﻿function Opcao(id) {
     this.Id = id;
 }

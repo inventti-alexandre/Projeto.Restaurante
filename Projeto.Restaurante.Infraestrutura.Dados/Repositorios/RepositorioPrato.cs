@@ -37,6 +37,11 @@ namespace Projeto.Restaurante.Infraestrutura.Dados.Repositorios
         {
             return Db.Pratos.Where(x => x.CategoriaId == categoriaId && x.Ativo == ativo).ToList();
         }
+
+        public IEnumerable<Prato> GetAll(int categoriaId, bool disponivel, bool ativo)
+        {
+            return Db.Pratos.Where(x => x.CategoriaId == categoriaId && x.Disponivel == disponivel && x.Ativo == ativo).ToList();
+        }
         #endregion
     }
 }

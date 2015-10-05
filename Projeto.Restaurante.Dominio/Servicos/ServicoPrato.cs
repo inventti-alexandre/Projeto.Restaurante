@@ -45,7 +45,12 @@ namespace Projeto.Restaurante.Dominio.Servicos
         {
             return _repositorioPrato.GetAll(categoriaId, ativo).OrderBy(x => x.Nome);
         }
-        
+
+        public IEnumerable<Prato> GetAll(int categoriaId, bool disponivel, bool ativo)
+        {
+            return _repositorioPrato.GetAll(categoriaId, disponivel, ativo).OrderBy(x => x.Nome);
+        }
+
         /// <exception cref="MyException">Nomenclatura já Cadastrada!</exception>
         public override void Update(Prato obj)
         {

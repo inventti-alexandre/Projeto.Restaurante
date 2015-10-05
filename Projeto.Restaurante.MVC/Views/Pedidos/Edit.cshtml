@@ -80,7 +80,7 @@
     {
         <div class="form-group">
             <label for="@opcao.Id" class="col-md-1">
-                <input value="@opcao.Id" type="checkbox" class="checkbox" />
+                <input value="@opcao.Id" type="checkbox" class="checkbox cbOpcoes" />
             </label>
             <label class="control-label col-md-11">
                 @Html.DisplayFor(model => opcao.Nome)
@@ -136,6 +136,8 @@
     @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/Scripts/Models/Item/Item.js")
     @Scripts.Render("~/Scripts/Models/Opcao/Opcao.js")
+    @Scripts.Render("~/Scripts/Models/Pedido/Pedido.js")
+    @Scripts.Render("~/Scripts/Models/Prato/Prato.js")
     @Scripts.Render("~/Scripts/Controllers/Pedido.js")
     <script type="text/javascript">
         $(document).ready(function () {

@@ -2,7 +2,7 @@
 
 namespace Projeto.Restaurante.WebApi.ViewModels.Prato
 {
-    public class ViewModelDetailsPrato
+    public class ViewModelGetPrato
     {
         [Required(ErrorMessage = "Obrigatório!", AllowEmptyStrings = false)]
         public string Nome { get; set; }

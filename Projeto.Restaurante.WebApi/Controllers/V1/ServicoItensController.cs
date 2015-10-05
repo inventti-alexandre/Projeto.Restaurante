@@ -3,9 +3,14 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using AutoMapper;
+using Projeto.Restaurante.Aplicacao;
 using Projeto.Restaurante.Aplicacao.Interfaces;
 using Projeto.Restaurante.Dominio.Entidades;
 using Projeto.Restaurante.Dominio.Exceptions;
+using Projeto.Restaurante.Dominio.Interfaces.Repositorios;
+using Projeto.Restaurante.Dominio.Interfaces.Servicos;
+using Projeto.Restaurante.Dominio.Servicos;
+using Projeto.Restaurante.Infraestrutura.Dados.Repositorios;
 using Projeto.Restaurante.WebApi.ViewModels.Item;
 
 namespace Projeto.Restaurante.WebApi.Controllers.V1
@@ -15,16 +20,23 @@ namespace Projeto.Restaurante.WebApi.Controllers.V1
     {
         private readonly IAplicacaoItem _aplicacaoItem;
 
-        public ServicoItensController(IAplicacaoItem aplicacaoItem)
+        //public ServicoItensController(IAplicacaoItem aplicacaoItem)
+        //{
+        //    _aplicacaoItem = aplicacaoItem;
+        //}
+
+        public ServicoItensController()
         {
-            _aplicacaoItem = aplicacaoItem;
+            IRepositorioItem repositorioItem = new RepositorioItem();
+            IServicoItem servicoItem = new ServicoItem(repositorioItem);
+            _aplicacaoItem = new AplicacaoItem(servicoItem);
         }
 
         [HttpGet]
         [Route("ServicoItens/{pedidoId:int}")]
         public HttpResponseMessage Get(int pedidoId)
         {
-            IEnumerable<ViewModelGetItem> viewModelGetItens = null;
+            IEnumerable<ViewModelGetItem> viewModelGetItens;
             try
             {
                 using (_aplicacaoItem)

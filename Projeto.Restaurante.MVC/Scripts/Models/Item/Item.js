@@ -1,5 +1,5 @@
-﻿function ViewModelPostItem(pedidoId, pratoId, opcoes) {
-    this.PedidoId = pedidoId;
-    this.PratoId = pratoId;
+﻿function Item(pedido, prato, opcoes) {
+    this.Pedido = pedido;
+    this.Prato = prato;
     this.Opcoes = opcoes;
 }

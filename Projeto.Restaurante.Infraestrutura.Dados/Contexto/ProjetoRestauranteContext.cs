@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Data.Entity.ModelConfiguration.Conventions;
+using System.Data.Entity.Validation;
 using System.Linq;
 using Projeto.Restaurante.Dominio.Entidades;
 using Projeto.Restaurante.Infraestrutura.Dados.ConfiguracaoDeEntidades;
@@ -47,6 +49,14 @@ namespace Projeto.Restaurante.Infraestrutura.Dados.Contexto
             base.OnModelCreating(modelBuilder);
         }
 
+        /// <exception cref="DbUpdateException">An error occurred sending updates to the database.</exception>
+        /// <exception cref="DbUpdateConcurrencyException">
+        ///             A database command did not affect the expected number of rows. This usually indicates an optimistic 
+        ///             concurrency violation; that is, a row has been changed in the database since it was queried.
+        ///             </exception>
+        /// <exception cref="DbEntityValidationException">
+        ///             The save was aborted because validation of entity property values failed.
+        ///             </exception>
         public override int SaveChanges()
         {
             foreach (var entry in ChangeTracker.Entries().Where(entry => entry.Entity.GetType().GetProperty("GlobalId") != null))

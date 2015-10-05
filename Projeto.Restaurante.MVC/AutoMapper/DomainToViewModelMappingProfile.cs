@@ -12,25 +12,25 @@ namespace Projeto.Restaurante.MVC.AutoMapper
     {
         protected override void Configure()
         {
-            Mapper.CreateMap<ViewModelCreateCategoria, Categoria>();
-            Mapper.CreateMap<ViewModelDetailsCategoria, Categoria>();
-            Mapper.CreateMap<ViewModelEditCategoria, Categoria>();
+            Mapper.CreateMap<Categoria, ViewModelCreateCategoria>();
+            Mapper.CreateMap<Categoria, ViewModelDetailsCategoria>();
+            Mapper.CreateMap<Categoria, ViewModelEditCategoria>();
 
-            Mapper.CreateMap<ViewModelCreateMesa, Mesa>();
-            Mapper.CreateMap<ViewModelDetailsMesa, Mesa>();
-            Mapper.CreateMap<ViewModelEditMesa, Mesa>();
+            Mapper.CreateMap<Mesa, ViewModelCreateMesa>();
+            Mapper.CreateMap<Mesa, ViewModelDetailsMesa>();
+            Mapper.CreateMap<Mesa, ViewModelEditMesa>();
 
-            Mapper.CreateMap<ViewModelCreateOpcao, Opcao>();
-            Mapper.CreateMap<ViewModelDetailsOpcao, Opcao>();
-            Mapper.CreateMap<ViewModelEditOpcao, Opcao>();
+            Mapper.CreateMap<Opcao, ViewModelCreateOpcao>();
+            Mapper.CreateMap<Opcao, ViewModelDetailsOpcao>();
+            Mapper.CreateMap<Opcao, ViewModelEditOpcao>();
 
-            Mapper.CreateMap<ViewModelCreatePedido, Pedido>();
-            Mapper.CreateMap<ViewModelDetailsPedido, Pedido>();
-            Mapper.CreateMap<ViewModelEditPedido, Pedido>();
+            Mapper.CreateMap<Pedido, ViewModelCreatePedido>();
+            Mapper.CreateMap<Pedido, ViewModelDetailsPedido>();
+            Mapper.CreateMap<Pedido, ViewModelEditPedido>();
 
-            Mapper.CreateMap<ViewModelCreatePrato, Prato>();
-            Mapper.CreateMap<ViewModelDetailsPrato, Prato>();
-            Mapper.CreateMap<ViewModelEditPrato, Prato>();
+            Mapper.CreateMap<Prato, ViewModelCreatePrato>();
+            Mapper.CreateMap<Prato, ViewModelDetailsPrato>();
+            Mapper.CreateMap<Prato, ViewModelEditPrato>();
         }
     }
 }

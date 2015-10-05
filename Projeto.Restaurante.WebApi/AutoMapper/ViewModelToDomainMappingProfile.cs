@@ -1,6 +1,9 @@
 ﻿using AutoMapper;
 using Projeto.Restaurante.Dominio.Entidades;
 using Projeto.Restaurante.WebApi.ViewModels.Item;
+using Projeto.Restaurante.WebApi.ViewModels.Opcao;
+using Projeto.Restaurante.WebApi.ViewModels.Pedido;
+using Projeto.Restaurante.WebApi.ViewModels.Prato;
 
 namespace Projeto.Restaurante.WebApi.AutoMapper
 {
@@ -8,7 +11,10 @@ namespace Projeto.Restaurante.WebApi.AutoMapper
     {
         protected override void Configure()
         {
-            Mapper.CreateMap<Item, ViewModelPostItem>();
+            Mapper.CreateMap<ViewModelPostItem, Item>();
+            Mapper.CreateMap<ViewModelPostOpcao, Opcao>();
+            Mapper.CreateMap<ViewModelPostPedido, Pedido>();
+            Mapper.CreateMap<ViewModelPostPrato, Prato>();
         }
     }
 }

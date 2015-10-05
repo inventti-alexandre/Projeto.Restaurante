@@ -105,7 +105,9 @@
     <Compile Include="ViewModels\Item\ViewModelPostItem.cs" />
     <Compile Include="ViewModels\Opcao\ViewModelGetOpcao.cs" />
     <Compile Include="ViewModels\Opcao\ViewModelPostOpcao.cs" />
+    <Compile Include="ViewModels\Pedido\ViewModelPostPedido.cs" />
     <Compile Include="ViewModels\Prato\ViewModelGetPrato.cs" />
+    <Compile Include="ViewModels\Prato\ViewModelPostPrato.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

@@ -15,23 +15,27 @@ function Validacao() {
 function AssociarItem() {
     if (Validacao()) {
 
-        var viewModelPostOpcao = new Array();
-        $(".checkbox:checked").each(function () {
-            viewModelPostOpcao.push($(this).val());
+        var pedido = new Pedido(pedidoId);
+
+        var prato = new Prato($("#comboPrato").val());
+
+        var opcoes = new Array();
+        $(".cbOpcoes:checked").each(function () {
+            opcoes.push(new Opcao($(this).val()));
         });
 
-        var viewModelPostItem = new ViewModelPostItem(pedidoId, $("#comboPrato").val());
-        //Opcoes
+        var item = new Item(pedido, prato, opcoes);
 
         $.ajax({
             type: "POST",
-            url: "/Projeto.Restaurante.WebApi/Api/V1/ServicoItens/" + pedidoId,
-            data: JSON.stringify(viewModelPostItem),
+            url: "/Projeto.Restaurante.WebApi/Api/V1/ServicoItens/",
+            data: JSON.stringify(item),
             dataType: "json",
             contentType: "application/json;charset=utf-8",
             success: function (data) {
                 alert("Sucesso!");
-
+                $(".cbOpcoes").removeAttr("checked");
+                Listar();
             },
             error: function (jqXhr) {
                 var e = eval("(" + jqXhr.responseText + ")");
@@ -46,7 +50,7 @@ function Listar() {
 
     $.ajax({
         type: "GET",
-        url: "/Api/V1/Itens/" + pedidoId,
+        url: "/Projeto.Restaurante.WebApi/Api/V1/ServicoItens/" + pedidoId,
         dataType: "json",
         contentType: "application/json;charset=utf-8",
         success: function (e) {

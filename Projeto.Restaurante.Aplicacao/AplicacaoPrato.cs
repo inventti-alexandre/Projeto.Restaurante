@@ -29,5 +29,10 @@ namespace Projeto.Restaurante.Aplicacao
         {
             return _servicoPrato.GetAll(categoriaId, ativo);
         }
+
+        public IEnumerable<Prato> GetAll(int categoriaId, bool disponivel, bool ativo)
+        {
+            return _servicoPrato.GetAll(categoriaId, disponivel, ativo);
+        }
     }
 }

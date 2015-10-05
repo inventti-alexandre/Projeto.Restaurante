@@ -107,7 +107,7 @@ namespace Projeto.Restaurante.MVC.Controllers
                     {
                         foreach (var categoria in listViewModelDetailsCategorias)
                         {
-                            categoria.Pratos = Mapper.Map<IEnumerable<Prato>, IEnumerable<ViewModelDetailsPrato>>(_aplicacaoPrato.GetAll(categoria.Id, true));
+                            categoria.Pratos = Mapper.Map<IEnumerable<Prato>, IEnumerable<ViewModelDetailsPrato>>(_aplicacaoPrato.GetAll(categoria.Id, true, true));
                         }
                     }
                 }
